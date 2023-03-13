@@ -20,18 +20,33 @@ const client = new Client({
     }
 });
 
+client.initialize();
+
+client.on('loading_screen', (percent, message) => {
+    console.log('LOADING SCREEN', percent, message);
+});
+
 client.on('qr', (qr) => {
     // Generate and scan this code with your phone
+    console.log('QR RECEIVED', qr);
     qrcode.generate(qr, { small: true });
 });
 
+client.on('authenticated', () => {
+    console.log('AUTHENTICATED');
+});
+
+client.on('auth_failure', msg => {
+    // Fired if session restore was unsuccessful
+    console.error('AUTHENTICATION FAILURE', msg);
+});
+
 client.on('ready', () => {
-    console.log('Client is ready!');
+    console.log('READY');
 });
 
 client.on('message_create', handler.bind(client));
 
-client.initialize();
 
 // load plugins
 loadPluginFiles(pluginFolder, pluginFilter, { logger: console, recursiveRead: false }).then(_ => console.log(Object.keys(plugins))).catch(console.error)
