@@ -104,3 +104,4 @@ dist
 .tern-port
 
 /.wwebjs_auth
+package-lock.json

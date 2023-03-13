@@ -1,5 +1,6 @@
-let handler = async m => {
-	m.reply('pong')
+let handler = async (m, { client }) => {
+	client.sendMessage(m.id.remote, 'pong')
+	//m.reply('pong')
 }
 
 handler.help = ['ping']

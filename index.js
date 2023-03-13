@@ -28,11 +28,11 @@ client.on('ready', () => {
     console.log('Client is ready!');
 });
 
-client.on('message', handler.bind(client));
+client.on('message_create', handler.bind(client));
 
 client.initialize();
 
 // load plugins
-loadPluginFiles(pluginFolder, pluginFilter, { recursiveRead: false }).then(_ => console.log(Object.keys(plugins))).catch(console.error)
+loadPluginFiles(pluginFolder, pluginFilter, { logger: console, recursiveRead: false }).then(_ => console.log(Object.keys(plugins))).catch(console.error)
 
 export { client }

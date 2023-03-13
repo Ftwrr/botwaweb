@@ -3,14 +3,18 @@ import { plugins } from './lib/plugins.js'
 import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
+import etc from "./etc.js";
 
 export async function handler(chatUpdate) {
-    if (!chatUpdate) return;
+    if (!chatUpdate)
+        return;
     let m = chatUpdate
     try {
         m = m
-        if (!m) return;
-        //if (!m.fromMe && process.env.SELF) return //TODO add self mode
+        if (!m)
+            return
+        if (!m.fromMe && !Helper.isOwner(m) && etc.opts.self)
+            return //TODO add self mode
         let usedPrefix
         const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
         for (let name in plugins) {
@@ -90,6 +94,12 @@ export async function handler(chatUpdate) {
                     await plugin.call(this, m, extra)
                 } catch (e) {
                     console.error(e)
+                    if (e) {
+                        let text = format(e)
+                        for (let key of Object.values(etc.APIKeys))
+                            text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
+                        m.reply(text)
+                    }
                 } finally {
                     if (typeof plugin.after === 'function') {
                         try {
@@ -106,7 +116,7 @@ export async function handler(chatUpdate) {
         console.error(e)
     } finally {
         //m.reply('wadoh')
-        console.log(`${m.type} from ${m.from} to ${m.to}`)
+        console.log(`${m.type} from ${m.author ? m.author : m.from} to ${m.id.remote}`)
         console.log(m.body)
     }
 }
