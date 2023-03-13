@@ -16,7 +16,7 @@ let handler = async (m, _2) => {
 		let f = {
 			exports: {}
 		}
-		let exec = new (async () => { }).constructor('print', 'm', 'handler', 'require', 'client', 'db', 'store', 'connection', 'Array', 'process', 'args', 'groupMetadata', 'module', 'exports', 'argument', _text)
+		let exec = new (async () => { }).constructor('print', 'm', 'handler', 'require', 'client', 'Array', 'process', 'args', 'module', 'exports', 'argument', _text)
 		_return = await exec.call(client, (...args) => {
 			if (--i < 1) return;
 			return client.sendMessage(m.id.remote, format(...args))
