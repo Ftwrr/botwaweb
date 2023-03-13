@@ -1,3 +1,7 @@
+/*
+author: https://github.com/Ftwrr
+*/
+
 const prefix = '!'
 const APIs = { // API Prefix
     // name: 'https://website'
