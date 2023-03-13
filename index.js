@@ -4,6 +4,7 @@ import wweb from 'whatsapp-web.js'
 const { Client, LocalAuth } = wweb
 import { handler } from './handler.js'
 import qrcode from 'qrcode-terminal'
+import { platform } from 'os'
 import {
     plugins,
     loadPluginFiles,
@@ -15,6 +16,7 @@ const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
         args: ['--no-sandbox'],
+        executablePath: platform() === 'win32' ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe' : '/usr/bin/google-chrome-stable',
     }
 });
 

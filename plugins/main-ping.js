@@ -4,7 +4,7 @@ let handler = async (m, { client }) => {
 }
 
 handler.help = ['ping']
-handler.tags = ['tools']
+handler.tags = ['main']
 handler.command = /^ping$/i
 
 export default handler;
