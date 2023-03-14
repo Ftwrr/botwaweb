@@ -6,7 +6,7 @@ let handler = async (m, { client }) => {
     m.reply(new MessageMedia("image/jpg", Buffer.from(media).toString("base64")))
 }
 
-handler.help = ['ping']
+handler.help = ['screenshot']
 handler.tags = ['owner']
 handler.command = /^screenshot$/i
 handler.owner = true
