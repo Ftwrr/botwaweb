@@ -3,7 +3,8 @@ const { MessageMedia } = wweb
 import got from "got";
 
 let handler = async (m, { text }) => {
-    let carbon = await generateCarbon(text)
+    const code = m.hasQuotedMsg ? (await m.getQuotedMessage()).body : text
+    let carbon = await generateCarbon(code)
     m.reply(new MessageMedia("image/jpg", carbon.toString("base64")))
 }
 
