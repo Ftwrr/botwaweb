@@ -12,7 +12,7 @@ import {
     pluginFilter
 } from './lib/plugins.js'
 
-const client = new Client({
+const conn = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
         args: ['--no-sandbox'],
@@ -20,35 +20,35 @@ const client = new Client({
     }
 });
 
-client.initialize();
+conn.initialize();
 
-client.on('loading_screen', (percent, message) => {
+conn.on('loading_screen', (percent, message) => {
     console.log('LOADING SCREEN', percent, message);
 });
 
-client.on('qr', (qr) => {
+conn.on('qr', (qr) => {
     // Generate and scan this code with your phone
     console.log('QR RECEIVED', qr);
     qrcode.generate(qr, { small: true });
 });
 
-client.on('authenticated', () => {
+conn.on('authenticated', () => {
     console.log('AUTHENTICATED');
 });
 
-client.on('auth_failure', msg => {
+conn.on('auth_failure', msg => {
     // Fired if session restore was unsuccessful
     console.error('AUTHENTICATION FAILURE', msg);
 });
 
-client.on('ready', () => {
+conn.on('ready', () => {
     console.log('READY');
 });
 
-client.on('message_create', handler.bind(client));
+conn.on('message_create', handler.bind(conn));
 
 
 // load plugins
 loadPluginFiles(pluginFolder, pluginFilter, { logger: console, recursiveRead: false }).then(_ => console.log(Object.keys(plugins))).catch(console.error)
 
-export { client }
+export { conn }

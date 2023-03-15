@@ -2,7 +2,7 @@ import tiktokdl from "../lib/scraper/tiktok.js";
 import wweb from 'whatsapp-web.js'
 const { MessageMedia } = wweb
 
-let handler = async (m, { args, client, usedPrefix, command }) => {
+let handler = async (m, { args, usedPrefix, command }) => {
     if (!args || !args[0]) throw `Input URL:\n${usedPrefix + command} https://www.tiktok.com/@initokyolagii/video/7189917930761506075`;
     const { desc, create_time, author: { unique_id, nickname }, duration, download: { nowm, wm, music, music_info: { title, author } } }  = await tiktokdl(args[0])
     const url = nowm || wm

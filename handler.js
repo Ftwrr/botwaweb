@@ -53,7 +53,7 @@ export async function handler(chatUpdate) {
             if (typeof plugin.before === 'function') {
                 if (await plugin.before.call(this, m, {
                     match,
-                    client: this,
+                    conn: this,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -85,7 +85,7 @@ export async function handler(chatUpdate) {
                     args,
                     command,
                     text,
-                    client: this,
+                    conn: this,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename

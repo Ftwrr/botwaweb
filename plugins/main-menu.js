@@ -21,7 +21,7 @@ const defaultMenu = {
 	after: ``,
 }
 
-let handler = async (m, { client, usedPrefix: _p, __dirname }) => {
+let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 	let name = m._data.notifyName
 
 	let help = Object.values(plugins).filter(plugin => !plugin.disabled).map(plugin => {

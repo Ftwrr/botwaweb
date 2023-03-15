@@ -1,7 +1,7 @@
 import cp, { exec as _exec } from 'child_process'
 import { promisify } from 'util'
 let exec = promisify(_exec).bind(cp)
-let handler = async (m, { client, command, text }) => {
+let handler = async (m, { command, text }) => {
   let o
   try {
     o = await exec(command.trimStart()  + ' ' + text.trimEnd())
