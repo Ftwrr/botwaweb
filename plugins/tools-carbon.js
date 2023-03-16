@@ -8,7 +8,7 @@ let handler = async (m, { text }) => {
     m.reply(new MessageMedia("image/jpg", carbon.toString("base64")))
 }
 
-handler.help = ['carbon']
+handler.help = ['carbon'].map(v => v + ' <code>')
 handler.tags = ['tools']
 handler.command = /^carbon$/i
 
