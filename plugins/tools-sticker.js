@@ -6,7 +6,7 @@ let handler = async (m, { usedPrefix, command }) => {
     if (quotedMsg && quotedMsg.hasMedia) {
         let attachmentData = await quotedMsg.downloadMedia();
         await m.reply( new MessageMedia(attachmentData.mimetype, attachmentData.data, attachmentData.filename), false, { sendMediaAsSticker: true } )
-    } else throw `Quote media with the command:\n${usedPrefix + command}`
+    } else m.reply(`Quote media with the command:\n${usedPrefix + command}`)
 }
 
 handler.help = ["sticker"].map((v) => v + " <media>");

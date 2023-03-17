@@ -7,7 +7,7 @@ let handler = async (m, { args }) => {
 	const waifu = rgex.test(args[0]) ? args[0].match(rgex)[0] : 'waifu'
 	const response = await fetch(Helper.API('https://api.waifu.im', '/search', { included_tags: waifu, gif: false }))
     const data = await response.json();
-    if (!data.images[0].url) throw data.detail;
+    if (!data.images[0].url) m.reply(data.detail);
     m.reply( await MessageMedia.fromUrl(data.images[0].url), false, { caption: data.images[0].source || data.images[0].url } )
 }
 
