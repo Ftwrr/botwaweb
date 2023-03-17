@@ -13,7 +13,7 @@ handler.help = ['telegraph'].map(v => v + ' <media>')
 handler.tags = ['tools']
 handler.command = /^telegraph$/i
 
-//handler.disabled = true
+handler.disabled = true
 
 export default handler;
 
