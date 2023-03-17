@@ -3,10 +3,9 @@ import wweb from 'whatsapp-web.js'
 const { MessageMedia } = wweb
 
 let handler = async (m, { args, usedPrefix, command }) => {
-    if (args) {
-        const response = Helper.API('https://ytdl.tiodevhost.my.id', '/', { url: args[0], filter: "audioandvideo", quality: "highestvideo", contenttype: "video/mp4" })
-        m.reply(await MessageMedia.fromUrl(response, { unsafeMime: true }))
-    } else m.reply(`Input URL:\n${usedPrefix + command} https://www.youtube.com/watch?v=q6EoRBvdVPQ`);
+    if (!args || !args[0]) return m.reply(`Input URL:\n${usedPrefix + command} https://www.youtube.com/watch?v=q6EoRBvdVPQ`);
+    const response = Helper.API('https://ytdl.tiodevhost.my.id', '/', { url: args[0], filter: "audioandvideo", quality: "highestvideo", contenttype: "video/mp4" })
+    m.reply(await MessageMedia.fromUrl(response, { unsafeMime: true }))
 }
 
 handler.help = ['youtube'].map(v => v + ` <url>`)

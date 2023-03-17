@@ -4,10 +4,10 @@ import got from "got";
 
 let handler = async (m, { text, usedPrefix, command }) => {
     const code = m.hasQuotedMsg ? (await m.getQuotedMessage()).body : text
-    if (code) {
-        let carbon = await generateCarbon(code)
-        m.reply(new MessageMedia("image/jpg", carbon.toString("base64")))
-    } else m.reply(`Input Code:\n${usedPrefix + command} console.log('hello world')`);
+    if (!code) return m.reply(`Input Code:\n${usedPrefix + command} console.log('hello world')`);
+    let carbon = await generateCarbon(code)
+    m.reply(new MessageMedia("image/jpg", carbon.toString("base64")))
+
 }
 
 handler.help = ['carbon'].map(v => v + ' <code>')
