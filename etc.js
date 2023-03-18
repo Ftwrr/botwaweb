@@ -13,6 +13,7 @@ const opts = {
     self: true
 }
 const owner = '6282394415872'
-    // [number, dia creator/owner?, dia developer?]
 
-export default { APIs, APIKeys, opts, prefix, owner }
+const author = 'https://github.com/Ftwrr'
+
+export default { APIs, APIKeys, opts, prefix, owner, author }
