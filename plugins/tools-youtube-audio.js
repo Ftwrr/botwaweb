@@ -13,5 +13,6 @@ handler.help = ['mp3'].map(v => "youtube" + v + ` <url>`)
 handler.tags = ['tools']
 handler.command = /^y(ou)?t(ube)?(a|mp3)$/i
 
+handler.disabled = true
 
 export default handler
