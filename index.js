@@ -17,7 +17,7 @@ const conn = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
         args: ['--no-sandbox'],
-        executablePath: platform() === 'win32' ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe' : '/usr/bin/google-chrome-stable',
+        executablePath: platform() === 'win32' ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe' : '/usr/bin/google-chrome-stable'
     }
 });
 

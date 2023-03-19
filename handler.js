@@ -14,7 +14,7 @@ export async function handler(chatUpdate) {
         if (!m)
             return
         if (!m.fromMe && !Helper.isOwner(m) && etc.opts.self)
-            return //TODO add self mode
+            return
         let usedPrefix
         const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), './plugins')
         for (let name in plugins) {
