@@ -12,7 +12,7 @@ const APIKeys = { // APIKey Here
 const opts = {
     self: true
 }
-const owner = '62823944158727'
+const owner = '6282394415872'
 
 const author = 'https://github.com/Ftwrr'
 
