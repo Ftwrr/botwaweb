@@ -115,7 +115,6 @@ export async function handler(chatUpdate) {
     } catch (e) {
         console.error(e)
     } finally {
-        //m.reply('wadoh')
         console.log(`${m.type} from ${m.author ? m.author : m.from} to ${m.id.remote}`)
         console.log(m.body)
     }
