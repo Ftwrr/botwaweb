@@ -15,7 +15,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 }
 
 handler.help = ['screenshotweb'].map(v => v + ' <url>')
-handler.tags = ['owner']
+handler.tags = ['tools']
 handler.command = /^(screenshot|ss)(site|web(site)?)$/i
 
 export default handler;
