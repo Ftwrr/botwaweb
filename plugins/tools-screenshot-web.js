@@ -14,7 +14,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     await browser.close();
 }
 
-handler.help = ['screenshot']
+handler.help = ['screenshotweb'].map(v => v + ' <url>')
 handler.tags = ['owner']
 handler.command = /^(screenshot|ss)(site|web(site)?)$/i
 
