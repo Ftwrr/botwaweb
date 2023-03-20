@@ -16,7 +16,7 @@ import {
 const conn = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        args: ['--no-sandbox'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
         executablePath: platform() === 'win32' ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe' : '/usr/bin/google-chrome-stable'
     }
 });
