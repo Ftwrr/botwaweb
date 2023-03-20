@@ -10,7 +10,7 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['screenshot']
 handler.tags = ['owner']
-handler.command = /^screenshot$/i
+handler.command = /^(screenshot|ss)$/i
 
 handler.owner = true
 
