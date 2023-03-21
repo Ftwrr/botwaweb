@@ -3,7 +3,7 @@ import wweb from 'whatsapp-web.js'
 const { MessageMedia } = wweb
 
 let handler = async (m, { conn }) => {
-    let media = await conn.pupPage.screenshot({fullPage: full})
+    let media = await conn.pupPage.screenshot({fullPage: true})
     m.reply(new MessageMedia((await fileTypeFromBuffer(media)).mime, Buffer.from(media).toString("base64")))
 }
 
