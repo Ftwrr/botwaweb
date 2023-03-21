@@ -10,7 +10,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (valid) {
         const data = await nhentai.getDoujin(args[0])
         const pdf = await (data.images).PDF()
-        m.reply(new MessageMedia((await fileTypeFromBuffer(pdf)).mime, Buffer.from(pdf).toString("base64"), data.originalTitle + '.pdf' ))
+        m.reply(new MessageMedia((await fileTypeFromBuffer(pdf)).mime, Buffer.from(pdf).toString("base64"), data.title + '.pdf'), null, { caption: data.title } )
     } else return m.reply('Invalid doujin ID')
 }
 
