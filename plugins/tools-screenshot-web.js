@@ -5,7 +5,7 @@ const { MessageMedia } = wweb
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args || !args[0]) return m.reply(`Input URL:\n${usedPrefix + command} https://wwebjs.dev/`);
-    let full = args[1] ? /^f(ull)?(pages?)?$/g.test(args[1]) : false
+    let full = /^f(ull)?(pages?)?$/g.test(args[1])
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     await page.goto(args[0]);
