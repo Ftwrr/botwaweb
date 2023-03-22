@@ -77,6 +77,20 @@ export async function handler(chatUpdate) {
                     fail('owner', m)
                     continue
                 }
+                if (plugin.group && !(await Helper.isGroup(m))) {
+                    fail('group', m)
+                    continue
+                } else if (plugin.botAdmin && !(await Helper.isBotAdmin(m))) {
+                    fail('botAdmin', m)
+                    continue
+                } else if (plugin.admin && !(await Helper.isAdmin(m))) {
+                    fail('admin', m)
+                    continue
+                }
+                if (plugin.private && m.isGroup) {
+                    fail('private', m, this)
+                    continue
+                }
                 let extra = {
                     match,
                     usedPrefix,

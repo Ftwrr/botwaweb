@@ -6,6 +6,7 @@ let tags = {
 	'main': 'Main',
 	'internet': 'Internet',
 	'tools': 'Tools',
+	'group': 'Group',
 	'owner': 'Owner',
 	'advanced': 'Advanced',
 	'': 'No Category',
