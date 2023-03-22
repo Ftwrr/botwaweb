@@ -1,6 +1,7 @@
 import { fileTypeFromBuffer } from 'file-type';
 import wweb from 'whatsapp-web.js'
 const { MessageMedia } = wweb
+import fetch from 'node-fetch'
 
 let handler = async (m, { text, usedPrefix, command }) => {
     const code = m.hasQuotedMsg ? (await m.getQuotedMessage()).body : text
@@ -17,7 +18,6 @@ export default handler;
 
 async function generateCarbon(options) {
     let fetchCarbon = await fetch('https://carbonara.vercel.app/api/cook', { method: 'post', body: JSON.stringify({ code: options }), headers: {'Content-Type': 'application/json'} })
-    if (!fetchCarbon.ok) return fetchCarbon;
-    let buff = Buffer.from(await fetchCarbon.arrayBuffer())
+    let buff = await fetchCarbon.buffer()
     return buff
 }

@@ -10,7 +10,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     const page = await browser.newPage();
     await page.goto(args[0]);
     const media = await page.screenshot({fullPage: full});
-    await m.reply(new MessageMedia((await fileTypeFromBuffer(media)).mime, Buffer.from(media).toString("base64")))
+    await m.reply(new MessageMedia((await fileTypeFromBuffer(media)).mime, media.toString("base64")))
     await browser.close();
 }
 

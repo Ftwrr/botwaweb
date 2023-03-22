@@ -4,7 +4,7 @@ const { MessageMedia } = wweb
 
 let handler = async (m, { conn }) => {
     let media = await conn.pupPage.screenshot({fullPage: true})
-    m.reply(new MessageMedia((await fileTypeFromBuffer(media)).mime, Buffer.from(media).toString("base64")))
+    m.reply(new MessageMedia((await fileTypeFromBuffer(media)).mime, media.toString("base64")))
 }
 
 handler.help = ['screenshot']
