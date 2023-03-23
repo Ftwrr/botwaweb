@@ -1,7 +1,7 @@
 let handler = async (m, { conn, usedPrefix, command, args, text }) => {
-	if (!text) return m.reply(`Input text:\n${usedPrefix + command} hello world`);
+	//if (!text) return m.reply(`Input text:\n${usedPrefix + command} hello world`);
 	let chat = await m.getChat();
-	await chat.setDescription(text)
+	await chat.setDescription(text || '')
 }
 
 handler.help = ['setdescription'].map(v => v + ' <text>')
