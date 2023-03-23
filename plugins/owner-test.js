@@ -1,19 +1,24 @@
 import wweb from 'whatsapp-web.js'
-const { Buttons } = wweb
+const { Buttons, List } = wweb
 
 let handler = async (m, { conn, text, command, args }) => {
-  let test = command.substr(4)
+  let test = args[0]
   switch (test) {
   case 'button':
     let button = new Buttons('Button body',[{body:'bt1'},{body:'bt2'},{body:'bt3'}],'title','footer');
     conn.sendMessage(m.id.remote, button);
+    break
+  case 'list':
+    let sections = [{title:'sectionTitle',rows:[{title:'ListItem1', description: 'desc'},{title:'ListItem2'}]}];
+    let list = new List('List body','btnText',sections,'Title','footer');
+    conn.sendMessage(m.id.remote, list);
     break
   default:
     if (!test) return m.reply('?')
   }
 }
 
-handler.command = /^test(button)?$/i
+handler.command = /^test$/i
 
 handler.owner = true
 
