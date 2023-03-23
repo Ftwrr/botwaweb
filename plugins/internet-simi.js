@@ -8,7 +8,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 }
 
 handler.help = ['simsimi'].map(v => v + ' <text>')
-handler.tags = ['main']
+handler.tags = ['internet']
 handler.command = /^simi?(simi)?$/i
 
 export default handler;
