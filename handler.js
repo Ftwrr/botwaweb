@@ -87,7 +87,7 @@ export async function handler(chatUpdate) {
                     fail('admin', m)
                     continue
                 }
-                if (plugin.private && m.isGroup) {
+                if (plugin.private && (await Helper.isGroup(m))) {
                     fail('private', m, this)
                     continue
                 }
