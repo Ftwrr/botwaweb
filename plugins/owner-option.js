@@ -3,10 +3,13 @@ import etc from "../etc.js";
 let handler = async (m, { command, args }) => {
 	let isEnable = /true|enable|(turn)?on|1/i.test(command)
 	let type = (args[0] || '').toLowerCase()
-	let list = ['public'];
+	let list = ['public', 'simsimi'];
 	switch (type) {
 	case 'public':
 		etc.opts.self = !isEnable
+		break
+	case 'simsimi':
+		etc.opts.simsimi = !isEnable
 		break
 	default:
 		if (!/[01]/.test(command)) return m.reply(`Option:\n${list.join(', ')}`)

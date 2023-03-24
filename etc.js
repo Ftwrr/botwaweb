@@ -10,7 +10,8 @@ const APIKeys = { // APIKey Here
     // 'https://website': 'apikey'
 }
 const opts = {
-    self: true
+    self: true,
+    simsimi: false
 }
 const owner = '6282394415872'
 
