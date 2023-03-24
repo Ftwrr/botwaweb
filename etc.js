@@ -11,7 +11,7 @@ const APIKeys = { // APIKey Here
 }
 const opts = {
     self: true,
-    simsimi: false
+    //simsimi: false
 }
 const owner = '6282394415872'
 

@@ -8,9 +8,11 @@ let handler = async (m, { command, args }) => {
 	case 'public':
 		etc.opts.self = !isEnable
 		break
+	/*
 	case 'simsimi':
 		etc.opts.simsimi = !isEnable
 		break
+	*/
 	default:
 		if (!/[01]/.test(command)) return m.reply(`Option:\n${list.join(', ')}`)
 			throw false
