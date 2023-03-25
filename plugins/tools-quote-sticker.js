@@ -5,11 +5,11 @@ import fetch from 'node-fetch'
 import etc from "../etc.js";
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    let quotedMessage = m.hasQuotedMsg ? await m.getQuotedMessage() : m
-    let teks = m.hasQuotedMsg ? quotedMessage.body : text
+    const quotedMessage = m.hasQuotedMsg ? await m.getQuotedMessage() : m
+    const teks = m.hasQuotedMsg ? quotedMessage.body : text
     if (teks === "") return m.reply(`Input message:\n${usedPrefix + command} hello world`);
-    let avatar = await conn.getProfilePicUrl(quotedMessage.author || quotedMessage.from)
-    let username = quotedMessage._data.notifyName
+    const avatar = await conn.getProfilePicUrl(quotedMessage.author || quotedMessage.from)
+    const username = quotedMessage._data.notifyName
     const quote = await generateQuote(teks, avatar, username)
     m.reply(new MessageMedia((await fileTypeFromBuffer(quote)).mime, quote.toString("base64")), false, { sendMediaAsSticker: true, stickerName: etc.author, stickerAuthor: etc.author, stickerCategories: ['😅'] })
 }
@@ -44,6 +44,7 @@ async function generateQuote(text, avatar, username) {
   ]
   };
   let res = await fetch('https://bot.lyo.su/quote/generate', { method: 'post', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'} })
+  if (!res.ok) throw res.statusText
   const json = await res.json()
   return Buffer.from(json.result.image, 'base64')
 }
