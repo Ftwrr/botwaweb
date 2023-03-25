@@ -7,6 +7,7 @@ import etc from "../etc.js";
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let quotedMessage = m.hasQuotedMsg ? await m.getQuotedMessage() : m
     let teks = m.hasQuotedMsg ? quotedMessage.body : text
+    if (teks === "") return m.reply(`Input message:\n${usedPrefix + command} hello world`);
     let avatar = await conn.getProfilePicUrl(quotedMessage.author || quotedMessage.from)
     let username = quotedMessage._data.notifyName
     const quote = await generateQuote(teks, avatar, username)
