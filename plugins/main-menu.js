@@ -5,6 +5,7 @@ import { plugins } from '../lib/plugins.js'
 let tags = {
 	'main': 'Main',
 	'internet': 'Internet',
+	'downloader': 'Downloader',
 	'tools': 'Tools',
 	'group': 'Group',
 	'owner': 'Owner',
