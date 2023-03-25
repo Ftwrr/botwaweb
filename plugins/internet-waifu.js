@@ -13,7 +13,7 @@ let handler = async (m, { args }) => {
     if (!data.images[0].url) return m.reply(data.detail);
     const responseImages = await fetch(data.images[0].url)
     if (!responseImages.ok) return m.reply(`${responseImages.status} ${responseImages.statusText}`);
-    let buff = await responseImages.buffer()
+    let buff = await responseImages.arrayBuffer()
     m.reply(new MessageMedia((await fileTypeFromBuffer(buff)).mime, buff.toString("base64")), false, { caption: data.images[0].source || data.images[0].url } )
 }
 
