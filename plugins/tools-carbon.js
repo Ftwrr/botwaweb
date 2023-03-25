@@ -18,6 +18,7 @@ export default handler;
 
 async function generateCarbon(options) {
     let fetchCarbon = await fetch('https://carbonara.vercel.app/api/cook', { method: 'post', body: JSON.stringify({ code: options }), headers: {'Content-Type': 'application/json'} })
+    if (!fetchCarbon.ok) throw `${fetchCarbon.status} ${fetchCarbon.statusText}`
     let buff = await fetchCarbon.buffer()
     return buff
 }

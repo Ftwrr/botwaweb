@@ -44,7 +44,7 @@ async function generateQuote(text, avatar, username) {
   ]
   };
   let res = await fetch('https://bot.lyo.su/quote/generate', { method: 'post', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'} })
-  if (!res.ok) throw res.statusText
+  if (!res.ok) throw `${res.status} ${res.statusText}`
   const json = await res.json()
   return Buffer.from(json.result.image, 'base64')
 }
