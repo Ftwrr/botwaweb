@@ -5,9 +5,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 }
 
 handler.help = ['reaction'].map(v => v + ' <emoji>')
-handler.tags = ['owner']
+handler.tags = ['tools']
 handler.command = /^react(ion)?$/i
-
-handler.owner = true
 
 export default handler;
