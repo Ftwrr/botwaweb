@@ -4,6 +4,14 @@ import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
 import etc from "./etc.js";
+import {
+    yellow,
+    bgGreen,
+    black,
+    bgBlueBright,
+    bgBlue,
+    red
+} from 'colorette';
 
 export async function handler(chatUpdate) {
     if (!chatUpdate)
@@ -40,16 +48,16 @@ export async function handler(chatUpdate) {
             let match = (_prefix instanceof RegExp ? // RegExp Mode?
                 [[_prefix.exec(m.body), _prefix]] :
                 Array.isArray(_prefix) ? // Array?
-                    _prefix.map(p => {
+                _prefix.map(p => {
                         let re = p instanceof RegExp ? // RegExp in Array?
-                            p :
-                            new RegExp(str2Regex(p))
+                        p :
+                        new RegExp(str2Regex(p))
                         return [re.exec(m.body), re]
                     }) :
                     typeof _prefix === 'string' ? // String?
-                        [[new RegExp(str2Regex(_prefix)).exec(m.body), new RegExp(str2Regex(_prefix))]] :
-                        [[[], new RegExp]]
-            ).find(p => p[1])
+                    [[new RegExp(str2Regex(_prefix)).exec(m.body), new RegExp(str2Regex(_prefix))]] :
+                    [[[], new RegExp]]
+                    ).find(p => p[1])
             if (typeof plugin.before === 'function') {
                 if (await plugin.before.call(this, m, {
                     match,
@@ -59,16 +67,16 @@ export async function handler(chatUpdate) {
                     __filename
                 }))
                     continue
-            }
-            if (typeof plugin !== 'function')
-                continue
-            if ((usedPrefix = (match[0] || '')[0])) {
-                let noPrefix = m.body.replace(usedPrefix, '')
-                let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
-                args = args || []
-                let _args = noPrefix.trim().split` `.slice(1)
-                let text = _args.join` `
-                command = (command || '').toLowerCase()
+                }
+                if (typeof plugin !== 'function')
+                    continue
+                if ((usedPrefix = (match[0] || '')[0])) {
+                    let noPrefix = m.body.replace(usedPrefix, '')
+                    let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+                    args = args || []
+                    let _args = noPrefix.trim().split` `.slice(1)
+                    let text = _args.join` `
+                    command = (command || '').toLowerCase()
                 let fail = plugin.fail || Helper.dfail // When failed
                 let isAccept = plugin.command instanceof RegExp ? plugin.command.test(command) : Array.isArray(plugin.command) ? plugin.command.some(cmd => cmd instanceof RegExp ? cmd.test(command) : cmd === command) : typeof plugin.command === 'string' ? plugin.command === command : false
                 if (!isAccept)
@@ -91,6 +99,7 @@ export async function handler(chatUpdate) {
                     fail('private', m, this)
                     continue
                 }
+                m.isCommand = true
                 let extra = {
                     match,
                     usedPrefix,
@@ -107,6 +116,7 @@ export async function handler(chatUpdate) {
                 try {
                     await plugin.call(this, m, extra)
                 } catch (e) {
+                    m.error = e
                     console.error(e)
                     if (e) {
                         let text = format(e)
@@ -129,7 +139,15 @@ export async function handler(chatUpdate) {
     } catch (e) {
         console.error(e)
     } finally {
-        console.log(`${m.type} from ${m.author ? m.author : m.from} to ${m.id.remote}`)
-        console.log(m.body)
+        await printMessage(m, this)
     }
+}
+
+async function printMessage(m, conn) {
+    console.log(`${black(bgGreen('%s'))} from ${black(bgBlueBright('%s'))} to ${black(bgBlue('%s'))}`,
+        m.type,
+        m._data.from,
+        m.id.remote
+        )
+    console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
 }
