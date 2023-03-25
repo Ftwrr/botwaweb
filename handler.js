@@ -146,7 +146,7 @@ export async function handler(chatUpdate) {
 async function printMessage(m, conn) {
     console.log(`${black(bgGreen('%s'))} from ${black(bgBlueBright('%s'))} to ${black(bgBlue('%s'))}`,
         m.type,
-        m._data.from,
+        m._data.author,
         m.id.remote
         )
     console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
