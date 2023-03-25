@@ -11,7 +11,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
     let stik = await telegramStic(args[0])
     for (let sticker of stik.result) {
         const res = await fetch(sticker)
-        let buff = await res.buffer()
+        let buff = await res.arrayBuffer()
         await m.reply( new MessageMedia((await fileTypeFromBuffer(buff)).mime, buff.toString("base64")), false, { sendMediaAsSticker: true, stickerName: stik.title || etc.author, stickerAuthor: stik.name || etc.author, stickerCategories: ['😅'] } )
     }
 }
