@@ -12,8 +12,8 @@ let handler = async (m, { args, usedPrefix, command }) => {
     if (!fetchVideo.ok) return m.reply(`${fetchVideo.status} ${fetchVideo.statusText}`);
     const fetchAudio = await fetch(music)
     if (!fetchAudio.ok) return m.reply(`${fetchAudio.status} ${fetchAudio.statusText}`);
-    if (!url.includes(music)) await m.reply( new MessageMedia((await fileTypeFromBuffer(await (await fetch(url)).arrayBuffer())).mime, (await fetchVideo.arrayBuffer()).toString("base64")) , false, { caption: `*${nickname}*\n@${unique_id}\n\n${desc ? desc : ''}`.trim() });
-    m.reply( new MessageMedia((await fileTypeFromBuffer(await fetchAudio.arrayBuffer())).mime, (await (await fetch(music)).arrayBuffer()).toString("base64")));
+    if (!url.includes(music)) await m.reply( new MessageMedia((await fileTypeFromBuffer(await (await fetch(url)).buffer())).mime, (await fetchVideo.buffer()).toString("base64")) , false, { caption: `*${nickname}*\n@${unique_id}\n\n${desc ? desc : ''}`.trim() });
+    m.reply( new MessageMedia((await fileTypeFromBuffer(await fetchAudio.buffer())).mime, (await (await fetch(music)).buffer()).toString("base64")));
 }
 
 handler.help = ['tiktok'].map(v => v + ' <url>')
