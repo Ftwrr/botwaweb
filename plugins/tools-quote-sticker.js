@@ -23,6 +23,7 @@ export default handler;
 async function generateQuote(text, avatar, username) {
     const data = {
       "format": "png",
+      "backgroundColor": "#1f2c34",
       /*
       TODO
       "media": [{}],
