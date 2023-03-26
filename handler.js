@@ -145,10 +145,9 @@ export async function handler(chatUpdate) {
 }
 
 async function printMessage(m, conn) {
-    console.log(m)
     console.log(`${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgBlue('%s'))}`,
         m.type,
-        m._data.notifyName || '',
+        m._data.notifyName ? m._data.notifyName : m.fromMe ? conn.info.wid._serialized : '',
         m._data.author || m._data.from || m.from,
         m.id.remote
         )
