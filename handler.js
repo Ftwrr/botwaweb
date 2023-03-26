@@ -151,7 +151,7 @@ async function printMessage(m, conn) {
         m.type,
         contact.name,
         chat.isGroup ? m.author : m.from,
-        chat.name, //TODO get name or pushname from private chat
+        chat.isGroup ? chat.name : contact.name, //TODO get name or pushname from private chat
         chat.id._serialized
         )
     console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
