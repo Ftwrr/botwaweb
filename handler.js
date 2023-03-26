@@ -149,9 +149,9 @@ async function printMessage(m, conn) {
     const contact = await m.getContact()
     console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
         m.type,
-        m.fromMe ? conn.info.pushname : contact.name,
-        chat.isGroup ? (m.fromMe ? m.from : m.author) : m.from,
-        chat.isGroup ? chat.name : chat.name, //TODO get name or pushname from private chat
+        contact.name,
+        m.author || m.from,
+        chat.name,
         chat.id._serialized
         )
     console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
