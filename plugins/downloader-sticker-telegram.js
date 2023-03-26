@@ -12,7 +12,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
     for (let sticker of stik.result) {
         const res = await fetch(sticker)
         let buff = Buffer.from(await res.arrayBuffer())
-        await m.reply( new MessageMedia((await fileTypeFromBuffer(buff)).mime, buff.toString("base64")), false, { sendMediaAsSticker: true, stickerName: stik.title || etc.author, stickerAuthor: stik.name || etc.author, stickerCategories: ['😅'] } )
+        await m.reply( new MessageMedia((await fileTypeFromBuffer(buff)).mime, buff.toString("base64")), false, { sendMediaAsSticker: true, stickerName: `${stik.title || etc.author} · ${stik.name || etc.author}`, stickerAuthor: etc.author, stickerCategories: ['😅'] } )
     }
 }
 
