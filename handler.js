@@ -149,7 +149,7 @@ async function printMessage(m, conn) {
     const contact = await m.getContact()
     console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
         m.type,
-        contact.name,
+        contact.name || contact.pushname,
         m.from || m.author,
         chat.name,
         chat.id._serialized
