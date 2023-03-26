@@ -150,7 +150,7 @@ async function printMessage(m, conn) {
     console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
         m.type,
         m.fromMe ? conn.info.pushname : contact.name,
-        chat.isGroup ? m.author : m.from,
+        chat.isGroup ? (m.fromMe ? m.from : m.author) : m.from,
         chat.isGroup ? chat.name : chat.name, //TODO get name or pushname from private chat
         chat.id._serialized
         )
