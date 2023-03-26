@@ -18,6 +18,8 @@ let handler = async (m, { conn, text, command, args }) => {
   }
 }
 
+handler.help = ['test'].map(v => v + ' <>')
+handler.tags = ['owner']
 handler.command = /^test$/i
 
 handler.owner = true

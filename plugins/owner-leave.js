@@ -9,6 +9,5 @@ handler.command = /^leave(gro?up)?$/i
 
 handler.owner = true
 handler.group = true
-handler.botAdmin = true
 
 export default handler;

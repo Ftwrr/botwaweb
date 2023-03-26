@@ -4,10 +4,8 @@ import wweb from 'whatsapp-web.js'
 const { MessageMedia } = wweb
 import fetch from 'node-fetch'
 
-let rgex = /(maid|waifu|marin-kitagawa|mori-calliope|raiden-shogun|oppai|selfies|uniform|ass|hentai|milf|oral|paizuri|ecchi|ero)/i
 let handler = async (m, { args }) => {
-	const waifu = rgex.test(args[0]) ? args[0].match(rgex)[0] : 'waifu'
-	const response = await fetch(Helper.API('https://api.waifu.im', '/search', { included_tags: waifu }))
+	const response = await fetch(Helper.API('https://api.waifu.im', '/search', { included_tags: rgex.test(args[0]) ? /(maid|waifu|marin-kitagawa|mori-calliope|raiden-shogun|oppai|selfies|uniform|ass|hentai|milf|oral|paizuri|ecchi|ero)/i.match(rgex)[0] : 'waifu' }))
     if (!response.ok) return m.reply(`${response.status} ${response.statusText}`);
     const data = await response.json()
     if (!data.images[0].url) return m.reply(data.detail);

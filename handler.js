@@ -8,9 +8,10 @@ import {
     yellow,
     bgGreen,
     black,
-    bgBlueBright,
+    bgMagenta,
     bgBlue,
-    red
+    red,
+    bgCyan
 } from 'colorette';
 
 export async function handler(chatUpdate) {
@@ -144,9 +145,10 @@ export async function handler(chatUpdate) {
 }
 
 async function printMessage(m, conn) {
-    console.log(`${black(bgGreen('%s'))} from ${black(bgBlueBright('%s'))} to ${black(bgBlue('%s'))}`,
+    console.log(`${black(bgGreen('%s'))} from ${black(bgBlue('~ %s'))} ${black(bgMagenta('%s'))} to ${black(bgCyan('%s'))}`,
         m.type,
-        m._data.author,
+        m._data.notifyName,
+        m._data.author || m._data.from,
         m.id.remote
         )
     console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
