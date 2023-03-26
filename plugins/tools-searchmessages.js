@@ -6,7 +6,9 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 }
 
 handler.help = ['searchmessages'].map(v => v + ' <text>')
-handler.tags = ['tools']
+handler.tags = ['owner']
 handler.command = /^s(earch)?(messages?|msg)$/i
+
+handler.owner = true
 
 export default handler;
