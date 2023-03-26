@@ -8,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     const quotedMessage = m.hasQuotedMsg ? await m.getQuotedMessage() : m
     const teks = m.hasQuotedMsg ? quotedMessage.body : text
     if (teks === "") return m.reply(`Input message:\n${usedPrefix + command} hello world`);
-    const avatar = await conn.getProfilePicUrl(quotedMessage.from || quotedMessage.author)
+    const avatar = await conn.getProfilePicUrl((await m.getChat()).isGroup ? quotedMessage.author : quotedMessage.from)
     const username = (await quotedMessage.getContact()).pushname
     const quote = await generateQuote(teks, avatar, username)
     m.reply(new MessageMedia((await fileTypeFromBuffer(quote)).mime, quote.toString("base64")), false, { sendMediaAsSticker: true, stickerName: etc.author, stickerAuthor: etc.author, stickerCategories: ['😅'] })
