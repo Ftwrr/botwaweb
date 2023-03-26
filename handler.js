@@ -145,11 +145,14 @@ export async function handler(chatUpdate) {
 }
 
 async function printMessage(m, conn) {
-    console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgBlue('%s'))}`,
+    const chat = await m.getChat()
+    const contact = await m.getContact()
+    console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
         m.type,
-        m._data.notifyName ? m._data.notifyName : m.fromMe ? conn.info.wid._serialized : '',
-        m._data.author || m._data.from || m.from,
-        m.id.remote
+        m.fromMe ? conn.info.pushname : contact.pushname,
+        chat.isGroup ? (m._data.author || m._data.from) : m._data.from,
+        chat.isGroup ? chat.name : contact.pushname,
+        chat.id._serialized
         )
     console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
 }
