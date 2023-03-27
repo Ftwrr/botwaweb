@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 	await chat.promoteParticipants(user)
 }
 
-handler.help = ['promote'].map(v => v + ' <tag>')
+handler.help = ['promote'].map(v => v + ' <mention>')
 handler.tags = ['group']
 handler.command = /^(promote|admin|\^|↑)$/i
 

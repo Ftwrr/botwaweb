@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 	await chat.demoteParticipants(user)
 }
 
-handler.help = ['demote'].map(v => v + ' <tag>')
+handler.help = ['demote'].map(v => v + ' <mention>')
 handler.tags = ['group']
 handler.command = /^(demote|member|↓)$/i
 

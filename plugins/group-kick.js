@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 	await chat.removeParticipants(user)
 }
 
-handler.help = ['kick'].map(v => v + ' <tag>')
+handler.help = ['kick'].map(v => v + ' <mention>')
 handler.tags = ['group']
 handler.command = /^(kick|-)$/i
 

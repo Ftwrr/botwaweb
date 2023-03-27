@@ -16,7 +16,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
     }
 }
 
-handler.help = ['stickertele'].map(v => v + ' <packname>')
+handler.help = ['stickertele'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^(stic?kertele(gram)?)$/i
 
