@@ -8,8 +8,10 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 	const contactById = await conn.getContactById(mentionWho)
 	const profilePicUrl = await conn.getProfilePicUrl(mentionWho)
 	const contactInfo = `*Name:* ${contactById.name || contactById.pushname}\n*Number:* ${contactById.number}`.trim()
-	if (!profilePicUrl) return m.reply(contactInfo)
-	const profilePicBuff = Buffer.from(await (await fetch(profilePicUrl)).arrayBuffer())
+	if (!profilePicUrl) return m.reply(contactInfo);
+	const res = await fetch(profilePicUrl)
+	if (res.status !== 200) return m.reply(`${res.status} ${res.statusText}`);
+	const profilePicBuff = Buffer.from(await res.arrayBuffer())
 	m.reply( new MessageMedia((await fileTypeFromBuffer(profilePicBuff)).mime, profilePicBuff.toString("base64")), false, { caption: contactInfo });
 }
 
