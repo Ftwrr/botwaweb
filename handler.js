@@ -147,7 +147,6 @@ export async function handler(chatUpdate) {
 async function printMessage(m, conn) {
     const chat = await m.getChat()
     const contact = await m.getContact()
-    console.log(contact)
     console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
         m.type,
         contact.verifiedName || contact.pushname || m._data.notifyName,
