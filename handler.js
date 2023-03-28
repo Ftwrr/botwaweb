@@ -150,7 +150,7 @@ async function printMessage(m, conn) {
     // console.log(m)
     console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
         m.type,
-        contact.name || contact.shortName || contact.verifiedName || contact.pushname,
+        contact.name || contact.shortName || contact.verifiedName || contact.pushname || m._data.notifyName,
         contact.id._serialized,
         chat.name,
         chat.id._serialized
