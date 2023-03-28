@@ -4,7 +4,7 @@ const { MessageMedia } = wweb
 import fetch from 'node-fetch'
 
 let handler = async (m, { text, usedPrefix, command }) => {
-    const code = m.hasQuotedMsg ? (await m.getQuotedMessage()).body : text
+    const code = m.hasQuotedMsg ? m._data.quotedMsg.body : text
     if (!code) return m.reply(`Input Code:\n${usedPrefix + command} console.log('hello world')`);
     let carbon = await generateCarbon(code)
     m.reply(new MessageMedia((await fileTypeFromBuffer(carbon)).mime, carbon.toString("base64")))
