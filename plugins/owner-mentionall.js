@@ -1,3 +1,5 @@
+// JamvanHax0r
+
 let handler = async (m, { conn, text }) => {
 	let participants = (await m.getChat()).participants.map(v => v.id._serialized)
 	let mentions = []
