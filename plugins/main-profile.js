@@ -7,7 +7,7 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 	const mentionWho = m.hasQuotedMsg ? (await (await m.getQuotedMessage()).getContact()).id._serialized : (m._data.mentionedJidList).length !== 0 ? m._data.mentionedJidList[0] : (await m.getContact()).id._serialized
 	const contactById = await conn.getContactById(mentionWho)
 	const profilePicUrl = await conn.getProfilePicUrl(mentionWho)
-	const contactInfo = `*Name:* ${contactById.name || contactById.pushname}\n*Number:* ${contactById.number}`.trim()
+	const contactInfo = `*Name:* ${contactById.verifiedName || contactById.pushname}\n*Number:* ${contactById.number}`.trim()
 	if (!profilePicUrl) return m.reply(contactInfo);
 	const res = await fetch(profilePicUrl)
 	if (res.status !== 200) return m.reply(`${res.status} ${res.statusText}`);
