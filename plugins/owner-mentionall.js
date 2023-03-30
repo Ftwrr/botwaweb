@@ -1,11 +1,8 @@
 // JamvanHax0r
 
 let handler = async (m, { conn, text }) => {
-	let participants = (await m.getChat()).participants.map(v => v.id._serialized)
-	let mentions = []
-	for (let jid of participants) {
-		mentions.push(await conn.getChatById(jid))
-	}
+	const participants = (await m.getChat()).participants.map(v => v.id._serialized);
+	const mentions = await Promise.all(participants.map(jid => conn.getChatById(jid)));
 	let teks = m.hasQuotedMsg ? m._data.quotedMsg.body : text
 	conn.sendMessage(m.id.remote, teks, { mentions })
 }
