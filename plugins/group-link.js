@@ -3,9 +3,9 @@ let handler = async (m, { conn, usedPrefix, command, args, text }) => {
 	m.reply('https://chat.whatsapp.com/' + await chat.getInviteCode())
 }
 
-handler.help = ['grouplink']
+handler.help = ['groupinvite']
 handler.tags = ['group']
-handler.command = /^(gro?up)?link(gro?up)?$/i
+handler.command = /^(group)?invite$/i
 
 handler.group = true
 handler.botAdmin = true
