@@ -29,6 +29,7 @@ BOTWAWEB
 - [Chrome](https://support.google.com/chrome/answer/95346)
 - [Node.js](https://nodejs.org/en/download/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [FFmpeg](https://ffmpeg.org/download.html)
 
 ## Getting Started With Local Development
 
