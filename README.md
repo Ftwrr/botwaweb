@@ -6,6 +6,9 @@ BOTWAWEB
 <h4 align="center">AMBATUKAM</h4>
 
 [Botwaweb](https://github.com/Ftwrr/botwaweb) adalah Modular Bot Whatsapp yang dikembangkan dari [wabot-aq](https://github.com/Nurutomo/wabot-aq) dan [games-wabot](https://github.com/BochilGaming/games-wabot) menggunakan [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
+
+
+## Features
 | Fitur  | Status |
 | ------------- | ------------- |
 | Gambar waifu  | ✅  |
@@ -34,10 +37,10 @@ npm i
 npm start
 ```
 
-# Support
+## Support
 Ask your questions and participate in discussions at the guild free fire.<br>
 <a href="https://chat.whatsapp.com/E3XI3lj9wiDKWtqdikend7"><img src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
 
-#  Useful Links
+##  Useful Links
 - [wwebjs Docs](https://docs.wwebjs.dev/)
 - [wwebjs Guide](https://wwebjs.dev/guide/)
