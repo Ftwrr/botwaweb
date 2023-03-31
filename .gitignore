@@ -103,6 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-/.wwebjs_auth
+/session
 package-lock.json
 pnpm-lock.yaml
