@@ -25,7 +25,7 @@ const defaultMenu = {
 
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 	const contact = await m.getContact()
-	let name = ( contact.verifiedName || contact.pushname )
+	let name = ( contact.verifiedName || contact.pushname || m._data.notifyName )
 
 	let help = Object.values(plugins).filter(plugin => !plugin.disabled).map(plugin => {
 		return {
