@@ -27,15 +27,11 @@ jobs:
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - node_modules
-  test:
-    docker:
-      - image: cimg/node:lts
-    steps:
-      - checkout
-      - run: node test.js
+      - run:
+          name: Run test using nodejs
+          command: node test.js
 
 workflows:
   build_and_test:
     jobs:
       - build
-      - test
