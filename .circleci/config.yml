@@ -4,16 +4,35 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/base:2023.03
+      - image: cimg/node:lts
+    resource_class: large
+    parallelism: 10
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+      - run:
+          name: Install pnpm package manager
+          command: |
+            sudo corepack enable
+            sudo corepack prepare pnpm@latest-8 --activate
+      - run:
+          name: Install Dependencies
+          command: |
+            pnpm install
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - node_modules
   test:
     docker:
-      - image: cimg/base:2023.03
+      - image: cimg/node:lts
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run: node test.js
 
 # Orchestrate our job run sequence
 workflows:
