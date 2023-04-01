@@ -12,15 +12,23 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-deps-{{ checksum "package.json" }}-<< parameters.node-version >>
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}-<< parameters.node-version >>
       - run:
-          name: Install packages
-          command: npm install --prefer-offline --no-audit --progress=false
+          name: Install pnpm package manager
+          command: |
+            corepack enable
+            corepack prepare pnpm@latest-8 --activate
+      - run:
+          name: Install Dependencies
+          command: |
+            pnpm install
       - save_cache:
-          key: v1-deps-{{ checksum "package.json" }}-<< parameters.node-version >>
-          paths: 
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}-<< parameters.node-version >>
+          paths:
             - node_modules
-            - package-lock.json 
       - run:
           name: Run test using nodejs << parameters.node-version >>
           command: node test.js
