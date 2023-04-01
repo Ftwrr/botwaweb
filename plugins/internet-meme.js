@@ -1,4 +1,5 @@
-import { fileTypeFromBuffer } from 'file-type';
+import { fileTypeFromBuffer } from 'file-type'
+import Helper from "../lib/helper.js"
 import wweb from 'whatsapp-web.js'
 const { MessageMedia } = wweb
 import fetch from 'node-fetch'
