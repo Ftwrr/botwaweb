@@ -1,42 +1,34 @@
 version: 2.1
-orbs:
-  node: circleci/node@5.1.0
 
-jobs: 
-  test:
-    parameters:
-      node-version:
-        type: string
+jobs:
+  test: # this can be any name you choose
     docker:
-      - image: cimg/node:<< parameters.node-version >>
+      - image: node:18
+    resource_class: large
+    parallelism: 10
+
     steps:
       - checkout
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}-<< parameters.node-version >>
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
       - run:
           name: Install pnpm package manager
           command: |
-            sudo corepack enable
-            sudo corepack prepare pnpm@latest-8 --activate
+            corepack enable
+            corepack prepare pnpm@latest-8 --activate
       - run:
           name: Install Dependencies
           command: |
             pnpm install
       - save_cache:
           name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}-<< parameters.node-version >>
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - node_modules
+            - run:
       - run:
-          name: Run test using nodejs << parameters.node-version >>
-          command: node test.js
-
-workflows:
-  all-test:
-    jobs:
-      - test: 
-          matrix:
-            parameters:
-              node-version: ['lts', 'current']
+          name: Run test
+          command: |
+            node test.js
