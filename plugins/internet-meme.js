@@ -6,6 +6,7 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { args }) => {
     const res = await fetch(Helper.API('https://meme-api.com', `/gimme/` + args[0] || ''))
+    await m.reply(Helper.API('https://meme-api.com', `/gimme/` + args[0] || ''))
     if (res.status !== 200) return m.reply(`${res.status} ${res.statusText}`);
     const data = await res.json()
     const buff = Buffer.from(await (await fetch(data.url)).arrayBuffer())
