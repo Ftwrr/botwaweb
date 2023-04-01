@@ -1,6 +1,6 @@
 version: 2.1
 
-# Define the jobs we want to run for this project
+
 jobs:
   build:
     docker:
@@ -34,7 +34,6 @@ jobs:
       - checkout
       - run: node test.js
 
-# Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
