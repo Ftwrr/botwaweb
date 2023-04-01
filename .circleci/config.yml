@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: pnpm
+          pkg-manager: npm
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:
