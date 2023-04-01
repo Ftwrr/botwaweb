@@ -23,7 +23,7 @@ let handler = async (m, { args, usedPrefix, command  }) => {
       lastError = e;
     }
   }
-  if (!(Buffer.isBuffer(source)) || !link || !res.ok) return m.reply('Can\'t download video');
+  if (!(Buffer.isBuffer(source)) || !link || (!res.status !== 200)) return m.reply('Can\'t download video');
   m.reply(new MessageMedia((await fileTypeFromBuffer(source)).mime, source.toString("base64")));
 }
 handler.help = ['youtube'].map(v => v + ` <url>`)
