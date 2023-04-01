@@ -11,10 +11,6 @@ jobs:
       - image: cimg/node:<< parameters.node-version >>
     steps:
       - checkout
-      - restore_cache:
-          name: Restore pnpm Package Cache
-          keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}-<< parameters.node-version >>
       - run:
           name: Install pnpm package manager
           command: |
