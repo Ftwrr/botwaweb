@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test: # this can be any name you choose
+  build: # this can be any name you choose
     docker:
       - image: node:18
     resource_class: large
@@ -27,13 +27,15 @@ jobs:
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - node_modules
-            - run:
+  test:
+    steps:
       - run:
-          name: Run test
+        name: Run test
           command: |
             node test.js
 
 workflows:
-  test:
+  build_and_test:
     jobs:
+      - build
       - test
