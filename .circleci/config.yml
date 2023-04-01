@@ -8,6 +8,8 @@ jobs:
     parallelism: 10
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: pnpm
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:
