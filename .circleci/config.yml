@@ -2,39 +2,33 @@ version: 2.1
 orbs:
   node: circleci/node@5.1.0
 
-jobs:
-  build:
+jobs: 
+  test:
+    parameters:
+      node-version:
+        type: string
     docker:
-      - image: cimg/node:lts
-    resource_class: large
-    parallelism: 10
+      - image: cimg/node:<< parameters.node-version >>
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
       - restore_cache:
-          name: Restore pnpm Package Cache
-          keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          key: v1-deps-{{ checksum "package.json" }}-<< parameters.node-version >>
       - run:
-          name: Install pnpm package manager
-          command: |
-            sudo corepack enable
-            sudo corepack prepare pnpm@latest-8 --activate
-      - run:
-          name: Install Dependencies
-          command: |
-            pnpm install
+          name: Install packages
+          command: npm install --prefer-offline --no-audit --progress=false
       - save_cache:
-          name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
-          paths:
+          key: v1-deps-{{ checksum "package.json" }}-<< parameters.node-version >>
+          paths: 
             - node_modules
+            - package-lock.json 
       - run:
-          name: Run test using nodejs
+          name: Run test using nodejs << parameters.node-version >>
           command: node test.js
 
 workflows:
-  build_and_test:
+  all-test:
     jobs:
-      - build
+      - test: 
+          matrix:
+            parameters:
+              node-version: ['lts', 'current']
