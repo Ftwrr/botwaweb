@@ -31,8 +31,7 @@ jobs:
     steps:
       - run:
         name: Run test
-          command: |
-            node test.js
+          command: node test.js
 
 workflows:
   build_and_test:
