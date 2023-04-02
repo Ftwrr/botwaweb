@@ -4,15 +4,7 @@ import { format } from 'util'
 import { fileURLToPath } from 'url'
 import path, { join } from 'path'
 import etc from "./etc.js";
-import {
-    yellow,
-    bgGreen,
-    black,
-    bgMagenta,
-    bgBlue,
-    red,
-    bgCyan
-} from 'colorette';
+import printMessage from './lib/print.js'
 
 export async function handler(chatUpdate) {
     if (!chatUpdate)
@@ -142,18 +134,4 @@ export async function handler(chatUpdate) {
     } finally {
         await printMessage(m, this)
     }
-}
-
-async function printMessage(m, conn) {
-    const chat = await m.getChat()
-    const contact = await m.getContact()
-    const chatContact = await conn.getContactById(chat.id._serialized)
-    console.log(`\n${black(bgGreen('%s'))} from ${black(bgMagenta('~ %s'))} ${black(bgCyan('%s'))} to ${black(bgMagenta('~ %s'))} ${black(bgBlue('%s'))}`,
-        m.type,
-        contact.verifiedName || contact.pushname || m._data.notifyName,
-        contact.id._serialized,
-        chatContact.verifiedName || chatContact.pushname || chatContact.name,
-        chat.id._serialized
-        )
-    console.log(m.error != null ? red(m.body) : m.isCommand ? yellow(m.body) : m.body)
 }
