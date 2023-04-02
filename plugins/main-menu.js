@@ -25,7 +25,7 @@ const defaultMenu = {
 
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 	const contact = await m.getContact()
-	let name = ( contact.verifiedName || contact.pushname || m._data.notifyName )
+	let name = '@' + contact.number
 
 	let help = Object.values(plugins).filter(plugin => !plugin.disabled).map(plugin => {
 		return {
@@ -56,7 +56,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 		name,
 		readmore: readMore
 	}
-	m.reply((_text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])).trim())
+	m.reply((_text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])).trim(), false, { mentions: [contact] })
 
 }
 
