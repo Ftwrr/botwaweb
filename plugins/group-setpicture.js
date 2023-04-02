@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 }
 
 handler.help = ['setprofilepicturegroup'].map(v => v + ' <media>')
-handler.tags = ['owner']
+handler.tags = ['group']
 handler.command = /^set(pic(ture)?|pp)group$/i
 
 handler.admin = true

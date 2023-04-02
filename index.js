@@ -4,6 +4,7 @@ process.on('unhandledRejection', console.error)
 import wweb from 'whatsapp-web.js'
 const { Client, LocalAuth } = wweb
 import { handler } from './handler.js'
+import etc from "./etc.js";
 import qrcode from 'qrcode-terminal'
 import { platform } from 'os'
 import {
@@ -46,8 +47,9 @@ conn.on('auth_failure', msg => {
     console.error('AUTHENTICATION FAILURE', msg);
 });
 
-conn.on('ready', () => {
+conn.on('ready', async () => {
     console.log('READY');
+    await conn.sendMessage(etc.owner + "@c.us", `${JSON.stringify(conn.info)}`)
 });
 
 conn.on('message_create', handler.bind(conn));
