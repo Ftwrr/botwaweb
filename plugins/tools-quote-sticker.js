@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const teks = m.hasQuotedMsg ? quotedMessage.body : text
   if (teks === "") return m.reply(`Input message:\n${usedPrefix + command} hello world`);
   const avatar = await conn.getProfilePicUrl((await m.getChat()).isGroup ? (quotedMessage.fromMe ? quotedMessage.from : quotedMessage.author) : quotedMessage.from)
-  const contact = await m.getContact()
+  const contact = await quotedMessage.getContact()
   const username = ( contact.verifiedName || contact.pushname )
   const quote = await generateQuote(teks, avatar, username)
   if (quote.status !== 200) return m.reply(`${quote.status} ${quote.statusText}`);
