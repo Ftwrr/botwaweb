@@ -1,7 +1,8 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-	const quoted = await (await m.getQuotedMessage()).getQuotedMessage()
-	if (!quoted) return m.reply(`Quote message:\n${usedPrefix + command} quoted message`);
-	await quoted.forward(m.id.remote)
+	if (!m.hasQuotedMsg) return m.reply(`Quote message:\n${usedPrefix + command} message`);
+	const quoted = await m.getQuotedMessage()
+	const quotedOf = quoted.hasQuotedMsg ? await quoted.getQuotedMessage() : quoted
+	await quotedOf.forward(m.id.remote)
 }
 
 handler.help = ['quoted'].map(v => v + ' <message>')
