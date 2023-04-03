@@ -6,7 +6,7 @@ const { Client, LocalAuth } = wweb
 import { handler } from './handler.js'
 import etc from "./etc.js";
 import qrcode from 'qrcode-terminal'
-import { platform } from 'node:os'
+import { platform } from 'os'
 import {
     plugins,
     loadPluginFiles,
