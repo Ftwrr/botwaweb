@@ -8,7 +8,7 @@ let handler = async (m, { conn }) => {
     m.reply(new MessageMedia((await fileTypeFromBuffer(media)).mime, media.toString("base64")))
 }
 
-handler.help = ['screenshot']
+handler.help = ['screenshotwhatsapp']
 handler.tags = ['owner']
 handler.command = /^(screenshot|ss)wa|whatsapp$/i
 
