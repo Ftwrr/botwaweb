@@ -18,7 +18,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
 
 handler.help = ['stickertele'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-handler.command = /^(s(tic?ker)?kertele(gram)?)$/i
+handler.command = /^(s(tic?ker)?tele(gram)?)$/i
 
 handler.private = true
 
