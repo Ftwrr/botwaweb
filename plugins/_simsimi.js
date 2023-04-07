@@ -1,8 +1,8 @@
 /*
 import etc from "../etc.js";
-import { conn } from "../index.js"
+// import { conn } from "../main.js"
 
-export async function before(m) {
+export async function before(m { conn } ) {
 	if (m.fromMe) return;
 	if (!etc.opts.simsimi) return;
 	let isMentioned = (m._data.quotedParticipant || m.mentionedIds).includes(conn.info.wid._serialized)
