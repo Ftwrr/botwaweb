@@ -5,7 +5,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 	for (let chats of chatsArr) {
 		await quoted.forward(chats)
 	}
-
 }
 
 handler.help = ['broadcast'].map(v => v + ` <message>`)
