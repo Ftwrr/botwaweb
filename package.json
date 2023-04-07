@@ -20,6 +20,7 @@
   "author": "Ftwrr",
   "license": "ISC",
   "dependencies": {
+    "@xct007/frieren-scraper": "github:xct007/frieren-scraper",
     "colorette": "^2.0.19",
     "file-type": "^18.2.1",
     "node-fetch": "^3.3.1",
