@@ -13,8 +13,8 @@ const opts = {
     self: false,
     //simsimi: false
 }
-const owner = '6285777451314'
+const owner = '6282394415872'
 
-const author = 'www.mynat.my.id'
+const author = 'https://github.com/Ftwrr'
 
 export default { APIs, APIKeys, opts, prefix, owner, author }
