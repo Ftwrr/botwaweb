@@ -12,7 +12,7 @@ handler.help = ['hidetag'].map(v => v + ' <text>')
 handler.tags = ['owner']
 handler.command = /^(pengumuman|announce|hiddentag|hidetag)$/i
 
-handler.owner = true
+handler.admin = true
 handler.group = true
 
 export default handler;

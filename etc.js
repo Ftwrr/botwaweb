@@ -2,7 +2,7 @@
 author: https://github.com/Ftwrr
 */
 
-const prefix = '!'
+const prefix = false
 const APIs = { // API Prefix
     // name: 'https://website'
 }
@@ -10,11 +10,11 @@ const APIKeys = { // APIKey Here
     // 'https://website': 'apikey'
 }
 const opts = {
-    self: true,
+    self: false,
     //simsimi: false
 }
-const owner = '6282394415872'
+const owner = '6285777451314'
 
-const author = 'https://github.com/Ftwrr'
+const author = 'www.mynat.my.id'
 
 export default { APIs, APIKeys, opts, prefix, owner, author }

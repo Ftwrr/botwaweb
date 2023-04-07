@@ -17,8 +17,8 @@ const defaultMenu = {
 	before: `
 	%name
 	%readmore`.trimStart(),
-	header: '*%category*',
-	body: '%cmd',
+	header: '*_%category_*',
+	body: '• %cmd',
 	footer: '',
 	after: ``,
 }
