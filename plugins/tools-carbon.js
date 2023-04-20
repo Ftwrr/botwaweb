@@ -18,7 +18,7 @@ handler.command = /^carbon$/i
 export default handler;
 
 async function generateCarbon(options) {
-    const res = await fetch('https://carbonara.vercel.app/api/cook', { method: 'post', body: JSON.stringify({ code: options }), headers: {'Content-Type': 'application/json'} })
+    const res = await fetch('https://carbonara.solopov.dev/api/cook', { method: 'post', body: JSON.stringify({ code: options }), headers: {'Content-Type': 'application/json'} })
     if (res.status !== 200) return {
         status: res.status,
         statusText: res.statusText
