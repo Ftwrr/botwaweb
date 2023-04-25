@@ -11,7 +11,7 @@ export async function handler(chatUpdate) {
   let m = chatUpdate;
   try {
     m = m;
-    if (!m) return;
+    if (!m && !m._data.isNewMsg && !m._data.recvFresh) return;
     if (!m.fromMe && !Helper.isOwner(m) && etc.opts.self) return;
     let usedPrefix;
     const ___dirname = path.join(
