@@ -1,5 +1,5 @@
-process.on('uncaughtException', console.error)
-process.on('unhandledRejection', console.error)
+// process.on('uncaughtException', console.error)
+// process.on('unhandledRejection', console.error)
 
 import wweb from 'whatsapp-web.js'
 const { Client, LocalAuth } = wweb

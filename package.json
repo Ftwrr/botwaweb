@@ -21,11 +21,11 @@
   "license": "ISC",
   "dependencies": {
     "@xct007/frieren-scraper": "github:xct007/frieren-scraper",
-    "colorette": "^2.0.19",
+    "colorette": "^2.0.20",
     "file-type": "^18.2.1",
     "node-fetch": "^3.3.1",
     "qrcode-terminal": "^0.12.0",
     "syntax-error": "^1.4.0",
-    "whatsapp-web.js": "github:Ftwrr/whatsapp-web.js"
+    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js"
   }
 }
