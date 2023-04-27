@@ -13,6 +13,7 @@ import {
     pluginFolder,
     pluginFilter
 } from './lib/plugins.js'
+import db from './lib/database.js'
 
 const conn = new Client({
     authStrategy: new LocalAuth({
@@ -57,5 +58,11 @@ conn.on('message_create', handler.bind(conn));
 
 // load plugins
 loadPluginFiles(pluginFolder, pluginFilter, { logger: console, recursiveRead: false }).then(_ => console.log(Object.keys(plugins))).catch(console.error)
+
+setInterval(async () => {
+    await Promise.allSettled([
+        db.data ? db.write() : Promise.reject('db.data is null')
+    ])
+}, 60 * 1000)
 
 export { conn }

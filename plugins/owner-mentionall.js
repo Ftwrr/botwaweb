@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 	const mentions = await Promise.all(participants.map(jid => conn.getChatById(jid)));
 	let teks = m.hasQuotedMsg ? m._data.quotedMsg.body : text
 	if (!teks) return m.reply(`Input text:\n${usedPrefix + command} hello world`)
-	conn.sendMessage(m.id.remote, teks, { mentions })
+	conn.sendMessage(m.chat, teks, { mentions })
 }
 
 handler.help = ['hidetag'].map(v => v + ' <text>')

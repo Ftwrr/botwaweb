@@ -22,7 +22,7 @@ let handler = async (m, _2) => {
     _return = await exec.call(conn, (...args) => {
       if (--i < 1) return
       console.log(...args)
-      return conn.sendMessage(m.id.remote, format(...args), { quotedMessageId: m.id._serialized })
+      return conn.sendMessage(m.chat, format(...args), { quotedMessageId: m.id._serialized })
     }, m, handler, require, conn, CustomArray, process, args, groupMetadata, f, f.exports, [conn, _2])
   } catch (e) {
     let err = syntaxerror(_text, 'Execution Function', {
@@ -33,7 +33,7 @@ let handler = async (m, _2) => {
     if (err) _syntax = '```' + err + '```\n\n'
     _return = e
   } finally {
-    conn.sendMessage(m.id.remote, _syntax + format(_return), { quotedMessageId: m.id._serialized })
+    conn.sendMessage(m.chat, _syntax + format(_return), { quotedMessageId: m.id._serialized })
     m.exp = old
   }
 }

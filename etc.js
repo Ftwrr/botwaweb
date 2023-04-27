@@ -9,12 +9,12 @@ const APIs = { // API Prefix
 const APIKeys = { // APIKey Here
     // 'https://website': 'apikey'
 }
-const opts = {
-    self: true,
-    //simsimi: false
-}
+// const opts = {
+//     self: true,
+//     //simsimi: false
+// }
 const owner = '6282394415872'
 
 const author = 'https://github.com/Ftwrr'
 
-export default { APIs, APIKeys, opts, prefix, owner, author }
+export default { APIs, APIKeys, prefix, owner, author }
