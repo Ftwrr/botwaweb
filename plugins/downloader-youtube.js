@@ -4,11 +4,11 @@ const { MessageMedia } = wweb
 import fetch from 'node-fetch'
 import { youtube } from "@xct007/frieren-scraper";
 
-let handler = async (m, { args, usedPrefix, command  }) => {
+let handler = async (m, { args, usedPrefix, command }) => {
   if (!args || !args[0]) return m.reply(`Input URL:\n${usedPrefix + command} https://www.youtube.com/watch?v=XYjVwg63Z7U`);
   const data = await youtube.download(args[0])
   if (data.error) return m.reply(`${data.message}`);
-  const { thumbnail, urls: _urls, title } = data
+  const { urls: _urls } = data
   let urls, source, lastError
   for (let i in _urls) {
     try {
@@ -21,7 +21,7 @@ let handler = async (m, { args, usedPrefix, command  }) => {
     }
   }
   if (!(Buffer.isBuffer(source))) return m.reply('Can\'t download video');
-  m.reply(new MessageMedia((await fileTypeFromBuffer(source)).mime, source.toString("base64")));
+  m.reply(new MessageMedia((await fileTypeFromBuffer(source)).mime, source.toString("base64"), `${+ new Date}.${(await fileTypeFromBuffer(source)).ext}`), null, { sendMediaAsDocument: true });
 }
 handler.help = ['youtube'].map(v => v + ` <url>`)
 handler.tags = ['downloader']
