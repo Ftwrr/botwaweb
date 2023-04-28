@@ -24,7 +24,7 @@
     "colorette": "^2.0.20",
     "file-type": "^18.3.0",
     "lodash": "^4.17.21",
-    "lowdb": "^3.0.0",
+    "lowdb": "^6.0.0",
     "node-fetch": "^3.3.1",
     "qrcode-terminal": "^0.12.0",
     "syntax-error": "^1.4.0",

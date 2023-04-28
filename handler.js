@@ -19,7 +19,7 @@ export async function handler(chatUpdate) {
     await loadDatabase()
   try {
     m = m;
-    if (!m && !m._data.isNewMsg && !m._data.recvFresh) return;
+    if (!m) return;
 
     m.sender = (await m.getContact()).id._serialized
     m.chat = (await m.getChat()).id._serialized
