@@ -148,10 +148,10 @@ export async function handler(chatUpdate) {
         if (m.chat in db.data.chats || m.sender in db.data.users) {
           let chat = db.data.chats[m.chat]
           let user = db.data.users[m.sender]
-          if (name != 'plugins/owner-ban.js' && chat?.isBanned && !Helper.isOwner(m))
+          if (name != 'plugins/owner-ban.js' && (chat?.isBanned || user?.banned) && !Helper.isOwner(m))
             return
-          if (name != 'plugins/owner-ban.js' && user?.banned && !Helper.isOwner(m))
-            return
+          // if (name != 'plugins/owner-ban.js' && user?.banned && !Helper.isOwner(m))
+          //   return
         }
         if (plugin.owner && !Helper.isOwner(m)) {
           fail("owner", m);
@@ -220,7 +220,7 @@ export async function handler(chatUpdate) {
               console.error(e);
             }
           }
-          if (m.limit) m.reply(+m.limit + ' Limits used');
+          if (m.limit && !Helper.isPrems(m)) m.reply(+m.limit + ' Limits used');
         }
         break;
       }

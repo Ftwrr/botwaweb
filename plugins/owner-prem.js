@@ -1,6 +1,6 @@
 import db from '../lib/database.js'
 
-let handler = async (m, { command }) => {
+let handler = async (m, { command, usedPrefix }) => {
     let prem = /un/i.test(command)
     let user = m._data.mentionedJidList
     if (m.hasQuotedMsg) user.push(m._data.quotedParticipant)
