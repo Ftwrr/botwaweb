@@ -13,7 +13,7 @@ const opts = {
     self: false,
     //simsimi: false
 }
-const owner = '6282394415872'
+const owner = '6285777451314'
 
 const author = 'https://github.com/Ftwrr'
 
