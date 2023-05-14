@@ -59,7 +59,8 @@ conn.on("ready", async () => {
 
 conn.on("message_create", handler.bind(conn));
 
-conn.on(("group_join", "group_leave"), participantsUpdate.bind(conn));
+conn.on(("group_join"), participantsUpdate.bind(conn));
+conn.on(("group_leave"), participantsUpdate.bind(conn));
 
 // load plugins
 loadPluginFiles(pluginFolder, pluginFilter, {
