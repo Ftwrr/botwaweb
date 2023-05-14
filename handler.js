@@ -55,9 +55,9 @@ export async function handler(chatUpdate) {
       let settings = db.data.settings[conn.info.wid._serialized]
       if (typeof settings !== 'object') db.data.settings[conn.info.wid._serialized] = {}
       if (settings) {
-        if (!('self' in settings)) settings.self = false
+        if (!('self' in settings)) settings.self = true
       } else db.data.settings[conn.info.wid._serialized] = {
-        self: false,
+        self: true,
       }
     } catch (e) {
       console.error(e)

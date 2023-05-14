@@ -20,7 +20,6 @@
   "author": "Ftwrr",
   "license": "ISC",
   "dependencies": {
-    "@xct007/frieren-scraper": "github:xct007/frieren-scraper",
     "colorette": "^2.0.20",
     "file-type": "^18.4.0",
     "lodash": "^4.17.21",
@@ -28,6 +27,6 @@
     "node-fetch": "^3.3.1",
     "qrcode-terminal": "^0.12.0",
     "syntax-error": "^1.4.0",
-    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js"
+    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#auto-wa-web-update/patch"
   }
 }
