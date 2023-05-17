@@ -48,9 +48,16 @@ function start(file) {
     rl.on("line", (line) => {
       p.emit("message", line.trim());
     });
-  cron.schedule("0 0 * * *", () => {
-    p.emit("message", "reset");
-  });
+  cron.schedule(
+    "0 0 * * *",
+    () => {
+      p.emit("message", "reset");
+    },
+    {
+      scheduled: true,
+      timezone: "Asia/Makassar",
+    }
+  );
 }
 
 start("main.js");
