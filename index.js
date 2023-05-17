@@ -43,11 +43,7 @@ function start(file) {
   p.on("exit", (_, code) => {
     isRunning = false;
     console.error("Exited with code:", code);
-    if (code === 0) return;
-    watchFile(args[0], () => {
-      unwatchFile(args[0]);
-      start(file);
-    });
+    if (code !== "SIGTERM") start(file);
   });
   if (!rl.listenerCount())
     rl.on("line", (line) => {
