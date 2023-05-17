@@ -12,6 +12,7 @@ const rl = createInterface(process.stdin, process.stdout);
 
 console.log(`'${name}' By @${author.name || author}`);
 var isRunning = false;
+var resetInterval;
 /**
  * Start a js file
  * @param {String} file `path/to/file`
@@ -31,6 +32,7 @@ function start(file) {
       case "reset":
         p.process.kill();
         isRunning = false;
+        clearInterval(resetInterval);
         start.apply(this, arguments);
         break;
       case "uptime":
@@ -51,6 +53,9 @@ function start(file) {
     rl.on("line", (line) => {
       p.emit("message", line.trim());
     });
+  resetInterval = setInterval(() => {
+    p.emit("message", "reset"); // Send "reset" message every 1 minute
+  }, 12 * 60 * 60 * 1000);
 }
 
 start("main.js");
