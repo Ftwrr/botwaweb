@@ -2,9 +2,7 @@ import { join, dirname } from "path";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import { setupPrimary, fork } from "cluster";
-import { watchFile, unwatchFile } from "fs";
 import { createInterface } from "readline";
-import cron from "node-cron";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(__dirname); // Bring in the ability to create the 'require' method
@@ -30,6 +28,7 @@ function start(file) {
     console.log("[RECEIVED]", data);
     switch (data) {
       case "reset":
+        console.log("reset bos");
         p.process.kill();
         isRunning = false;
         start.apply(this, arguments);
@@ -48,16 +47,6 @@ function start(file) {
     rl.on("line", (line) => {
       p.emit("message", line.trim());
     });
-  cron.schedule(
-    "0 0 * * *",
-    () => {
-      p.emit("message", "reset");
-    },
-    {
-      scheduled: true,
-      timezone: "Asia/Makassar",
-    }
-  );
 }
 
 start("main.js");
