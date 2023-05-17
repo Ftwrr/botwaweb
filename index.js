@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import { setupPrimary, fork } from "cluster";
 import { watchFile, unwatchFile } from "fs";
 import { createInterface } from "readline";
+import cron from "node-cron";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(__dirname); // Bring in the ability to create the 'require' method
@@ -12,7 +13,6 @@ const rl = createInterface(process.stdin, process.stdout);
 
 console.log(`'${name}' By @${author.name || author}`);
 var isRunning = false;
-var resetInterval;
 /**
  * Start a js file
  * @param {String} file `path/to/file`
@@ -32,7 +32,6 @@ function start(file) {
       case "reset":
         p.process.kill();
         isRunning = false;
-        clearInterval(resetInterval);
         start.apply(this, arguments);
         break;
       case "uptime":
@@ -49,9 +48,9 @@ function start(file) {
     rl.on("line", (line) => {
       p.emit("message", line.trim());
     });
-  resetInterval = setInterval(() => {
-    p.emit("message", "reset"); // Send "reset" message every 1 minute
-  }, 12 * 60 * 60 * 1000);
+  cron.schedule("0 0 * * *", () => {
+    p.emit("message", "reset");
+  });
 }
 
 start("main.js");
