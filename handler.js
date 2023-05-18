@@ -31,6 +31,8 @@ export async function handler(chatUpdate) {
         if (!isNumber(user.exp)) user.exp = 0;
         if (!isNumber(user.limit)) user.limit = 10;
 
+        if (!isNumber(user.afk)) user.afk = -1;
+        if (!("afkReason" in user)) user.afkReason = "";
         if (!("banned" in user)) user.banned = false;
         if (!("premium" in user)) user.premium = false;
       } else
@@ -38,6 +40,8 @@ export async function handler(chatUpdate) {
           exp: 0,
           limit: 10,
 
+          afk: -1,
+          afkReason: "",
           banned: false,
           premium: false,
         };
@@ -94,27 +98,27 @@ export async function handler(chatUpdate) {
       let _prefix = plugin.customPrefix
         ? plugin.customPrefix
         : this.prefix
-          ? this.prefix
-          : Helper.prefix;
+        ? this.prefix
+        : Helper.prefix;
       let match = (
         _prefix instanceof RegExp // RegExp Mode?
           ? [[_prefix.exec(m.body), _prefix]]
           : Array.isArray(_prefix) // Array?
-            ? _prefix.map((p) => {
+          ? _prefix.map((p) => {
               let re =
                 p instanceof RegExp // RegExp in Array?
                   ? p
                   : new RegExp(str2Regex(p));
               return [re.exec(m.body), re];
             })
-            : typeof _prefix === "string" // String?
-              ? [
-                [
-                  new RegExp(str2Regex(_prefix)).exec(m.body),
-                  new RegExp(str2Regex(_prefix)),
-                ],
-              ]
-              : [[[], new RegExp()]]
+          : typeof _prefix === "string" // String?
+          ? [
+              [
+                new RegExp(str2Regex(_prefix)).exec(m.body),
+                new RegExp(str2Regex(_prefix)),
+              ],
+            ]
+          : [[[], new RegExp()]]
       ).find((p) => p[1]);
       if (typeof plugin.before === "function") {
         if (
@@ -141,12 +145,12 @@ export async function handler(chatUpdate) {
           plugin.command instanceof RegExp
             ? plugin.command.test(command)
             : Array.isArray(plugin.command)
-              ? plugin.command.some((cmd) =>
+            ? plugin.command.some((cmd) =>
                 cmd instanceof RegExp ? cmd.test(command) : cmd === command
               )
-              : typeof plugin.command === "string"
-                ? plugin.command === command
-                : false;
+            : typeof plugin.command === "string"
+            ? plugin.command === command
+            : false;
         if (!isAccept) continue;
         m.plugin = name;
         if (m.chat in db.data.chats || m.sender in db.data.users) {
@@ -253,19 +257,27 @@ export async function handler(chatUpdate) {
 
 export async function participantsUpdate(notification) {
   if (db.data.settings[conn.info.wid._serialized].self) return;
-  const contact = []
+  const contact = [];
   for (const contactId of notification.recipientIds) {
-    contact.push(await conn.getContactById(contactId))
+    contact.push(await conn.getContactById(contactId));
   }
-  console.log(notification)
+  console.log(notification);
   switch (notification.type) {
-    case 'add':
-    case 'invite':
-      conn.sendMessage(notification.chatId, `Welcome ${contact.map((v) => `@${v.number}`).join(' ')}`, { mentions: contact })
-      break
-    case 'remove':
-    case 'leave':
-      conn.sendMessage(notification.chatId, `Bye ${contact.map((v) => `@${v.number}`).join(' ')}`, { mentions: contact })
-      break
+    case "add":
+    case "invite":
+      conn.sendMessage(
+        notification.chatId,
+        `Welcome ${contact.map((v) => `@${v.number}`).join(" ")}`,
+        { mentions: contact }
+      );
+      break;
+    case "remove":
+    case "leave":
+      conn.sendMessage(
+        notification.chatId,
+        `Bye ${contact.map((v) => `@${v.number}`).join(" ")}`,
+        { mentions: contact }
+      );
+      break;
   }
 }
