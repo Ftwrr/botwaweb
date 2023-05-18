@@ -31,8 +31,6 @@ export async function handler(chatUpdate) {
         if (!isNumber(user.exp)) user.exp = 0;
         if (!isNumber(user.limit)) user.limit = 10;
 
-        if (!isNumber(user.afk)) user.afk = -1;
-        if (!("afkReason" in user)) user.afkReason = "";
         if (!("banned" in user)) user.banned = false;
         if (!("premium" in user)) user.premium = false;
       } else
@@ -40,8 +38,6 @@ export async function handler(chatUpdate) {
           exp: 0,
           limit: 10,
 
-          afk: -1,
-          afkReason: "",
           banned: false,
           premium: false,
         };
