@@ -33,8 +33,8 @@ const conn = new Client({
 });
 
 conn.initialize();
-setInterval(() => {
-  conn.destroy()
+setInterval( async () => {
+  await conn.destroy()
   conn.initialize()
 }, 6 * 60 * 60 * 1000);
 
