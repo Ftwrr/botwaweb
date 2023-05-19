@@ -14,6 +14,7 @@ import {
   pluginFilter,
 } from "./lib/plugins.js";
 import db from "./lib/database.js";
+import cron from 'node-cron';
 
 const conn = new Client({
   authStrategy: new LocalAuth({
