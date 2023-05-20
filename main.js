@@ -14,7 +14,7 @@ import {
   pluginFilter,
 } from "./lib/plugins.js";
 import db from "./lib/database.js";
-import cron from 'node-cron';
+import cron from "node-cron";
 
 const conn = new Client({
   authStrategy: new LocalAuth({
@@ -24,18 +24,18 @@ const conn = new Client({
   puppeteer: {
     args: ["--no-sandbox"],
     executablePath:
-    platform() === "win32"
-    ? "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-    : "/usr/bin/google-chrome-stable",
+      platform() === "win32"
+        ? "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        : "/usr/bin/google-chrome-stable",
   },
   userAgent:
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
 });
 
 conn.initialize();
-setInterval( async () => {
-  await conn.destroy()
-  conn.initialize()
+setInterval(async () => {
+  await conn.destroy();
+  conn.initialize();
 }, 6 * 60 * 60 * 1000);
 
 conn.on("loading_screen", (percent, message) => {
@@ -64,21 +64,21 @@ conn.on("ready", async () => {
 
 conn.on("message_create", handler.bind(conn));
 
-conn.on(("group_join"), participantsUpdate.bind(conn));
-conn.on(("group_leave"), participantsUpdate.bind(conn));
+conn.on("group_join", participantsUpdate.bind(conn));
+conn.on("group_leave", participantsUpdate.bind(conn));
 
 // load plugins
 loadPluginFiles(pluginFolder, pluginFilter, {
   logger: console,
   recursiveRead: false,
 })
-.then((_) => console.log(Object.keys(plugins)))
-.catch(console.error);
+  .then((_) => console.log(Object.keys(plugins)))
+  .catch(console.error);
 
 setInterval(async () => {
   await Promise.allSettled([
     db.data ? db.write() : Promise.reject("db.data is null"),
-    ]);
+  ]);
 }, 60 * 1000);
 
 export { conn };
