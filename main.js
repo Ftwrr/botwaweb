@@ -36,7 +36,7 @@ conn.initialize();
 setInterval(async () => {
   await conn.destroy();
   conn.initialize();
-}, 6 * 60 * 60 * 1000);
+}, 1 * 60 * 60 * 1000);
 
 conn.on("loading_screen", (percent, message) => {
   console.log("LOADING SCREEN", percent, message);
