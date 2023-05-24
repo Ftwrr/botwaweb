@@ -34,6 +34,7 @@ if (cluster.isPrimary) {
   });
   worker.on("exit", (_, code) => {
     console.error("Exited with code:", code);
+    fork();
   });
   if (!rl.listenerCount())
     rl.on("line", (line) => {
