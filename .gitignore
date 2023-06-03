@@ -104,7 +104,7 @@ dist
 .tern-port
 
 /session
-/.wwebjs_auth
 package-lock.json
 pnpm-lock.yaml
 database.json
+/.wwebjs_cache
