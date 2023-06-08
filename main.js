@@ -62,7 +62,7 @@ conn.on("ready", async () => {
   await conn.sendMessage(etc.owner + "@c.us", `${JSON.stringify(conn.info)}`);
 });
 
-conn.on("message_create", handler.bind(conn));
+conn.on("message", handler.bind(conn));
 
 conn.on("group_join", participantsUpdate.bind(conn));
 conn.on("group_leave", participantsUpdate.bind(conn));
