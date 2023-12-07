@@ -94,27 +94,27 @@ export async function handler(chatUpdate) {
       let _prefix = plugin.customPrefix
         ? plugin.customPrefix
         : this.prefix
-        ? this.prefix
-        : Helper.prefix;
+          ? this.prefix
+          : Helper.prefix;
       let match = (
         _prefix instanceof RegExp // RegExp Mode?
           ? [[_prefix.exec(m.body), _prefix]]
           : Array.isArray(_prefix) // Array?
-          ? _prefix.map((p) => {
+            ? _prefix.map((p) => {
               let re =
                 p instanceof RegExp // RegExp in Array?
                   ? p
                   : new RegExp(str2Regex(p));
               return [re.exec(m.body), re];
             })
-          : typeof _prefix === "string" // String?
-          ? [
-              [
-                new RegExp(str2Regex(_prefix)).exec(m.body),
-                new RegExp(str2Regex(_prefix)),
-              ],
-            ]
-          : [[[], new RegExp()]]
+            : typeof _prefix === "string" // String?
+              ? [
+                [
+                  new RegExp(str2Regex(_prefix)).exec(m.body),
+                  new RegExp(str2Regex(_prefix)),
+                ],
+              ]
+              : [[[], new RegExp()]]
       ).find((p) => p[1]);
       if (typeof plugin.before === "function") {
         if (
@@ -141,12 +141,12 @@ export async function handler(chatUpdate) {
           plugin.command instanceof RegExp
             ? plugin.command.test(command)
             : Array.isArray(plugin.command)
-            ? plugin.command.some((cmd) =>
+              ? plugin.command.some((cmd) =>
                 cmd instanceof RegExp ? cmd.test(command) : cmd === command
               )
-            : typeof plugin.command === "string"
-            ? plugin.command === command
-            : false;
+              : typeof plugin.command === "string"
+                ? plugin.command === command
+                : false;
         if (!isAccept) continue;
         m.plugin = name;
         if (m.chat in db.data.chats || m.sender in db.data.users) {
@@ -255,7 +255,7 @@ export async function participantsUpdate(notification) {
   if (db.data.settings[conn.info.wid._serialized].self) return;
   const contact = [];
   for (const contactId of notification.recipientIds) {
-    contact.push(await conn.getContactById(contactId));
+    contact.push(contactId);
   }
   console.log(notification);
   switch (notification.type) {
@@ -263,8 +263,8 @@ export async function participantsUpdate(notification) {
     case "invite":
       conn.sendMessage(
         notification.chatId,
-        `Welcome ${contact.map((v) => `@${v.number}`).join(" ")}`,
-        { mentions: contact }
+        `Welcome ${contact.map((v) => `@${v}`).join(" ")}`,
+        { mentions: contact.map((v) => v) }
       );
       break;
     case "remove":

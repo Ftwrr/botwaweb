@@ -36,27 +36,27 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 		}
 	})
 	for (let plugin of help) if (plugin && 'tags' in plugin) for (let tag of plugin.tags) if (!(tag in tags) && tag) tags[tag] = tag
-		let _text = [
-			defaultMenu.before,
-			...Object.keys(tags).map(tag => {
-				return defaultMenu.header.replace(/%category/g, tags[tag]) + '\n' + [
-					...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
-						return menu.help.map(help => {
-							return defaultMenu.body.replace(/%cmd/g, help)
+	let _text = [
+		defaultMenu.before,
+		...Object.keys(tags).map(tag => {
+			return defaultMenu.header.replace(/%category/g, tags[tag]) + '\n' + [
+				...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
+					return menu.help.map(help => {
+						return defaultMenu.body.replace(/%cmd/g, help)
 							.trim()
-						}).join('\n')
-					}),
-					defaultMenu.footer
-					].join('\n')
-			}),
-			defaultMenu.after
+					}).join('\n')
+				}),
+				defaultMenu.footer
 			].join('\n')
+		}),
+		defaultMenu.after
+	].join('\n')
 	let replace = {
 		'%': '%',
 		name,
 		readmore: readMore
 	}
-	m.reply((_text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])).trim(), false, { mentions: [m.sender] })
+	m.reply((_text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])).trim(), false, { mentions: [contact] })
 
 }
 

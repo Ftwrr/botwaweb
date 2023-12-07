@@ -8,8 +8,9 @@ let handler = async (m, { command, usedPrefix }) => {
   else m.reply(`Mention ID:\n${usedPrefix + command} @user`);
 };
 
-handler.tags = ["owner"].map((v) => v + " <mention>");
+handler.help = ["prem", "unprem"].map((v) => v + " <mention>");
 handler.command = /^(un)?prem$/i;
+handler.tags = ['owner']
 
 handler.owner = true;
 
