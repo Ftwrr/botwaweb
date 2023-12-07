@@ -56,7 +56,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 		name,
 		readmore: readMore
 	}
-	m.reply((_text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])).trim(), false, { mentions: [contact] })
+	m.reply((_text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])).trim(), false, { mentions: [m.sender] })
 
 }
 
