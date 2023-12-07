@@ -253,26 +253,26 @@ export async function handler(chatUpdate) {
 
 export async function participantsUpdate(notification) {
   if (db.data.settings[conn.info.wid._serialized].self) return;
-  const contact = [];
-  for (const contactId of notification.recipientIds) {
-    contact.push(contactId);
-  }
+  // const contact = [];
+  // for (const contactId of notification.recipientIds) {
+  //   contact.push(contactId);
+  // }
   console.log(notification);
   switch (notification.type) {
     case "add":
     case "invite":
       conn.sendMessage(
         notification.chatId,
-        `Welcome ${contact.map((v) => `@${v}`).join(" ")}`,
-        { mentions: contact.map((v) => v) }
+        `Welcome ${notification.recipientIds.map((v) => `@${v.split('@')[0]}`).join(" ")}`,
+        { mentions: notification.recipientIds }
       );
       break;
     case "remove":
     case "leave":
       conn.sendMessage(
         notification.chatId,
-        `Bye ${contact.map((v) => `@${v.number}`).join(" ")}`,
-        { mentions: contact }
+        `Bye ${notification.recipientIds.map((v) => `@${v.split('@')[0]}`).join(" ")}`,
+        { mentions: notification.recipientIds }
       );
       break;
   }

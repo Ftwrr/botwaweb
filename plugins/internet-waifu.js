@@ -14,7 +14,7 @@ let handler = async (m, { args }) => {
     const responseImages = await fetch(data.images[0].url)
     if (responseImages.status !== 200) return m.reply(`${responseImages.status} ${responseImages.statusText}`);
     let buff = Buffer.from(await responseImages.arrayBuffer())
-    m.reply(new MessageMedia((await fileTypeFromBuffer(buff)).mime, buff.toString("base64")), false, { caption: data.images[0].source || data.images[0].url } )
+    m.reply(new MessageMedia((await fileTypeFromBuffer(buff)).mime, buff.toString("base64")), false, { isViewOnce: data.images[0].is_nsfw ? true : false, caption: data.images[0].source || data.images[0].url })
 }
 
 handler.help = ['waifu'].map(v => v + ` (tag)`)

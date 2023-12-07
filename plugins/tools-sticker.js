@@ -7,7 +7,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
     let [packname, author] = text.split('|')
     if (quotedMsg && quotedMsg.hasMedia) {
         let attachmentData = await quotedMsg.downloadMedia();
-        await m.reply( new MessageMedia(attachmentData.mimetype, attachmentData.data, attachmentData.filename), false, { sendMediaAsSticker: true, stickerName: packname || etc.author, stickerAuthor: author || etc.author, stickerCategories: ['😅'] } )
+        await m.reply(new MessageMedia(attachmentData.mimetype, attachmentData.data, attachmentData.filename), false, { sendMediaAsSticker: true, stickerName: packname || etc.author, stickerAuthor: author || etc.author, stickerCategories: ['😅'] })
     } else return m.reply(`Quote media with the command:\n${usedPrefix + command}`)
 }
 
