@@ -25,7 +25,7 @@ const conn = new Client({
     args: ["--no-sandbox"],
     executablePath:
       platform() === "win32"
-        ? "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
         : "/usr/bin/google-chrome-stable",
   },
   userAgent:
