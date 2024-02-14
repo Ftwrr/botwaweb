@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command, args, text }) => {
-    if (!text) return m.reply(`Input subject:\n${usedPrefix + command} gc pekob | (mention)`);
+    if (!text) return m.reply(`Input subject:\n${usedPrefix + command} gc pekob (mention)`);
     let user = m._data.mentionedJidList
     if (m.hasQuotedMsg) await user.push(m._data.quotedParticipant)
     let [subject, member] = text.split('@')
