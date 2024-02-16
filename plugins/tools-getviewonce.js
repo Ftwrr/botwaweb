@@ -9,6 +9,6 @@ let handler = async (m, { usedPrefix, command }) => {
 
 handler.help = ['viewonce'].map(v => v + ' <viewonce>')
 handler.tags = ['tools']
-handler.command = /^(get)?viewonce$/i
+handler.command = /^(get|read)?viewonce$/i
 
 export default handler;

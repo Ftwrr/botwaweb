@@ -19,8 +19,8 @@ export async function handler(chatUpdate) {
     m = m;
     if (!m) return;
 
-    m.sender = (await m.getContact()).id._serialized;
-    m.chat = (await m.getChat()).id._serialized;
+    m.sender = m.from // (await m.getContact()).id._serialized;
+    m.chat = m._data.id.remote // (await m.getChat()).id._serialized;
     m.exp = 0;
     m.limit = false;
 
@@ -54,9 +54,11 @@ export async function handler(chatUpdate) {
         db.data.settings[conn.info.wid._serialized] = {};
       if (settings) {
         if (!("self" in settings)) settings.self = true;
+        if (!("simi" in settings)) settings.simi = false;
       } else
         db.data.settings[conn.info.wid._serialized] = {
           self: true,
+          simi: false,
         };
     } catch (e) {
       console.error(e);

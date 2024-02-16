@@ -78,6 +78,7 @@ loadPluginFiles(pluginFolder, pluginFilter, {
 setInterval(async () => {
   await Promise.allSettled([
     db.data ? db.write() : Promise.reject("db.data is null"),
+    console.log("db saved")
   ]);
 }, 60 * 1000);
 
