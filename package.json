@@ -21,7 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "colorette": "^2.0.20",
-    "file-type": "^19.3.0",
+    "file-type": "^19.4.1",
     "lodash": "^4.17.21",
     "lowdb": "^7.0.1",
     "node-cron": "^3.0.3",
