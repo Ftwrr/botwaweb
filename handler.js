@@ -19,10 +19,11 @@ export async function handler(chatUpdate) {
     m = m;
     if (!m) return;
 
-    m.sender = m.from // (await m.getContact()).id._serialized;
+    m.sender = ((await m.getContact()).id._serialized).replace(/:\d+/, ""); //TODO: maybe just validate m.chat length if group or not and get m.author or m.from
     m.chat = m._data.id.remote // (await m.getChat()).id._serialized;
     m.exp = 0;
     m.limit = false;
+    m.isBot = m._data.id.id?.startsWith('3EB0') && m._data.id.id.length === 22 || false
 
     try {
       let user = db.data.users[m.sender];
@@ -53,11 +54,11 @@ export async function handler(chatUpdate) {
       if (typeof settings !== "object")
         db.data.settings[conn.info.wid._serialized] = {};
       if (settings) {
-        if (!("self" in settings)) settings.self = true;
+        if (!("self" in settings)) settings.self = false;
         if (!("simi" in settings)) settings.simi = false;
       } else
         db.data.settings[conn.info.wid._serialized] = {
-          self: true,
+          self: false,
           simi: false,
         };
     } catch (e) {
@@ -69,6 +70,7 @@ export async function handler(chatUpdate) {
       db.data.settings[conn.info.wid._serialized].self
     )
       return;
+    if (m.isBot) return
     m.exp += Math.ceil(Math.random() * 10);
     let usedPrefix;
     let _user = db.data?.users?.[m.sender];
@@ -119,6 +121,7 @@ export async function handler(chatUpdate) {
               : [[[], new RegExp()]]
       ).find((p) => p[1]);
       if (typeof plugin.before === "function") {
+
         if (
           await plugin.before.call(this, m, {
             match,
@@ -224,7 +227,8 @@ export async function handler(chatUpdate) {
             let text = format(e);
             for (let key of Object.values(etc.APIKeys))
               text = text.replace(new RegExp(key, "g"), "#HIDDEN#");
-            m.reply(text);
+            m.reply("e");
+            m.reply(text, etc.owner + "@c.us");
           }
         } finally {
           if (typeof plugin.after === "function") {
