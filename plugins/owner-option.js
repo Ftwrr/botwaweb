@@ -4,13 +4,13 @@ import db from '../lib/database.js'
 let handler = async (m, { command, args, conn }) => {
 	let isEnable = /true|enable|(turn)?on|1/i.test(command)
 	let type = (args[0] || '').toLowerCase()
-	let list = ['public', 'simsimi'];
+	let list = ['public', 'autopilot'];
 	switch (type) {
 		case 'public':
 			db.data.settings[conn.info.wid._serialized].self = !isEnable
 			break
-		case 'simsimi':
-			db.data.settings[conn.info.wid._serialized].simi = isEnable
+		case 'autopilot':
+			db.data.settings[conn.info.wid._serialized].autopilot = isEnable
 			break
 		default:
 			if (!/[01]/.test(command)) return m.reply(`Option:\n${list.join(', ')}`)

@@ -22,6 +22,7 @@
   "dependencies": {
     "colorette": "^2.0.20",
     "file-type": "^19.5.0",
+    "genius-lyrics": "^4.4.7",
     "lodash": "^4.17.21",
     "lowdb": "^7.0.1",
     "node-cron": "^3.0.3",

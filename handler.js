@@ -55,11 +55,11 @@ export async function handler(chatUpdate) {
         db.data.settings[conn.info.wid._serialized] = {};
       if (settings) {
         if (!("self" in settings)) settings.self = false;
-        if (!("simi" in settings)) settings.simi = false;
+        if (!("autopilot" in settings)) settings.autopilot = false;
       } else
         db.data.settings[conn.info.wid._serialized] = {
           self: false,
-          simi: false,
+          autopilot: false,
         };
     } catch (e) {
       console.error(e);

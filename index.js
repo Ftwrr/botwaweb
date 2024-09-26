@@ -26,21 +26,17 @@ if (cluster.isPrimary) {
   const worker = fork();
   worker.on("message", (data) => {
     console.log("[RECEIVED]", data);
-    // switch (data) {
-    //   case "reset":
-    //     worker.process.kill();
-    //     fork();
-    // }
   });
   worker.on("exit", (_, code) => {
     console.error("Exited with code:", code);
     fork();
   });
+  worker.on("error", (err) => {
+    console.error("Error with code:", code);
+    fork();
+  })
   if (!rl.listenerCount())
     rl.on("line", (line) => {
       worker.emit("message", line.trim());
     });
-  // setInterval(() => {
-  //   worker.emit("message", "reset");
-  // }, 6 * 60 * 60 * 1000);
 }
