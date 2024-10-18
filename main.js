@@ -59,7 +59,7 @@ conn.on("auth_failure", (msg) => {
 
 conn.on("ready", async () => {
   console.log("READY");
-  await conn.sendMessage(etc.owner + "@c.us", `${JSON.stringify(conn.info)}`);
+  // await conn.sendMessage(etc.owner + "@c.us", `${JSON.stringify(conn.info)}`);
 });
 
 conn.on("message_create", handler.bind(conn));
