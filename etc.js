@@ -13,7 +13,7 @@ const APIKeys = { // APIKey Here
 //     self: true,
 //     //simsimi: false
 // }
-const owner = '6285179640930'
+const owner = '6282394415872'
 
 const author = 'https://github.com/Ftwrr'
 

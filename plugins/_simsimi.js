@@ -22,12 +22,14 @@ async function simsimi(text) {
         body: `text=${text}&lc=id&key=`
     })
     const json = await res.json()
+    console.log(json);
+    
     //if (!json.message) return
     return json.message
 }
 
 async function googleai(text) {
-    const res = await fetch(Helper.API('https://generativelanguage.googleapis.com', '/v1beta/models/gemini-1.5-flash-latest:generateContent', { key: "AIzaSyAgMhOEEfRbJAy-zBDKUkci-Pv6YlvKMp0" }), {
+    const res = await fetch(Helper.API('https://generativelanguage.googleapis.com', '/v1beta/models/gemini-2.0-flash:generateContent', { key: "AIzaSyAgMhOEEfRbJAy-zBDKUkci-Pv6YlvKMp0" }), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
