@@ -19,11 +19,13 @@ export async function handler(chatUpdate) {
     m = m;
     if (!m) return;
 
-    m.sender = ((await m.getContact()).id._serialized).replace(/:\d+/, ""); //TODO: maybe just validate m.chat length if group or not and get m.author or m.from
-    m.chat = m._data.id.remote // (await m.getChat()).id._serialized;
+    m.sender = (await m.getContact()).id._serialized.replace(/:\d+/, ""); //TODO: maybe just validate m.chat length if group or not and get m.author or m.from
+    m.chat = m._data.id.remote; // (await m.getChat()).id._serialized;
     m.exp = 0;
     m.limit = false;
-    m.isBot = m._data.id.id?.startsWith('3EB0') && m._data.id.id.length === 22 || false
+    m.isBot =
+      (m._data.id.id?.startsWith("3EB0") && m._data.id.id.length === 22) ||
+      false;
 
     try {
       let user = db.data.users[m.sender];
@@ -64,13 +66,20 @@ export async function handler(chatUpdate) {
     } catch (e) {
       console.error(e);
     }
+    // console.log("fromme " + m.fromMe);
+    // console.log("isowner " + Helper.isOwner(m));
+    // console.log(
+    //   "self mode " + db.data.settings[conn.info.wid._serialized].self
+    // );
+    // console.log("isbot " + m.isBot);
+
     if (
       !m.fromMe &&
       !Helper.isOwner(m) &&
       db.data.settings[conn.info.wid._serialized].self
     )
       return;
-    if (m.isBot) return
+    // if (m.isBot) return; //! validate m.isBot
     m.exp += Math.ceil(Math.random() * 10);
     let usedPrefix;
     let _user = db.data?.users?.[m.sender];
@@ -98,30 +107,29 @@ export async function handler(chatUpdate) {
       let _prefix = plugin.customPrefix
         ? plugin.customPrefix
         : this.prefix
-          ? this.prefix
-          : Helper.prefix;
+        ? this.prefix
+        : Helper.prefix;
       let match = (
         _prefix instanceof RegExp // RegExp Mode?
           ? [[_prefix.exec(m.body), _prefix]]
           : Array.isArray(_prefix) // Array?
-            ? _prefix.map((p) => {
+          ? _prefix.map((p) => {
               let re =
                 p instanceof RegExp // RegExp in Array?
                   ? p
                   : new RegExp(str2Regex(p));
               return [re.exec(m.body), re];
             })
-            : typeof _prefix === "string" // String?
-              ? [
-                [
-                  new RegExp(str2Regex(_prefix)).exec(m.body),
-                  new RegExp(str2Regex(_prefix)),
-                ],
-              ]
-              : [[[], new RegExp()]]
+          : typeof _prefix === "string" // String?
+          ? [
+              [
+                new RegExp(str2Regex(_prefix)).exec(m.body),
+                new RegExp(str2Regex(_prefix)),
+              ],
+            ]
+          : [[[], new RegExp()]]
       ).find((p) => p[1]);
       if (typeof plugin.before === "function") {
-
         if (
           await plugin.before.call(this, m, {
             match,
@@ -146,12 +154,12 @@ export async function handler(chatUpdate) {
           plugin.command instanceof RegExp
             ? plugin.command.test(command)
             : Array.isArray(plugin.command)
-              ? plugin.command.some((cmd) =>
+            ? plugin.command.some((cmd) =>
                 cmd instanceof RegExp ? cmd.test(command) : cmd === command
               )
-              : typeof plugin.command === "string"
-                ? plugin.command === command
-                : false;
+            : typeof plugin.command === "string"
+            ? plugin.command === command
+            : false;
         if (!isAccept) continue;
         m.plugin = name;
         if (m.chat in db.data.chats || m.sender in db.data.users) {
@@ -269,7 +277,9 @@ export async function participantsUpdate(notification) {
     case "invite":
       conn.sendMessage(
         notification.chatId,
-        `Welcome ${notification.recipientIds.map((v) => `@${v.split('@')[0]}`).join(" ")}`,
+        `Welcome ${notification.recipientIds
+          .map((v) => `@${v.split("@")[0]}`)
+          .join(" ")}`,
         { mentions: notification.recipientIds }
       );
       break;
@@ -277,7 +287,9 @@ export async function participantsUpdate(notification) {
     case "leave":
       conn.sendMessage(
         notification.chatId,
-        `Bye ${notification.recipientIds.map((v) => `@${v.split('@')[0]}`).join(" ")}`,
+        `Bye ${notification.recipientIds
+          .map((v) => `@${v.split("@")[0]}`)
+          .join(" ")}`,
         { mentions: notification.recipientIds }
       );
       break;

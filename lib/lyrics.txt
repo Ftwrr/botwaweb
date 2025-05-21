@@ -1,64 +1,47 @@
-[id: pdgqvnpv]
-[ar: Kesha]
-[al: Warrior]
-[ti: Die Young]
-[length: 03:32]
-[00:06.91]I hear your heart beat to the beat of the drums
-[00:11.32]Oh what a shame that you came here with someone
-[00:16.10]So while you're here in my arms
-[00:19.04]Let's make the most of the night
-[00:21.05]Like we're gonna die young
-[00:25.10]We're gonna die young
-[00:28.72]We're gonna die young
-[00:33.93]Let's make the most of the night
-[00:36.16]Like we're gonna die young
-[00:38.96]
-[00:48.93]Let's make the most of the night
-[00:51.07]Like we're gonna die young
-[00:52.60]Young hearts, out our minds
-[00:54.39]Runnin' 'til we outta time
-[00:56.45]Wild child's, lookin' good
-[00:58.18]Livin' hard just like we should
-[01:00.39]Don't care whose watching when we tearing it up (you know)
-[01:03.95]That magic that we got nobody can touch (for sure)
-[01:07.84]Looking for some trouble tonight (yeah)
-[01:11.44]Take my hand, I'll show you the wild side
-[01:15.14]Like it's the last night of our lives (uh-huh)
-[01:18.94]We'll keep dancing 'til we die
-[01:21.98]I hear your heart beat to the beat of the drums
-[01:26.44]Oh what a shame that you came here with someone
-[01:31.11]So while you're here in my arms
-[01:34.07]Let's make the most of the night
-[01:36.12]Like we're gonna die young
-[01:40.12]We're gonna die young
-[01:43.94]We're gonna die young
-[01:48.96]Let's make the most of the night
-[01:51.18]Like we're gonna die young
-[01:53.99]
-[02:04.09]Let's make the most of the night
-[02:06.18]Like we're gonna die young
-[02:07.72]Young hunks, taking shots
-[02:09.22]Stripping down to dirty socks
-[02:11.38]Music up, gettin' hot
-[02:13.18]Kiss me, give me all you've got
-[02:15.20]It's pretty obvious that you've got a crush (you know)
-[02:18.90]That magic in your pants, it's making me blush (for sure)
-[02:22.76]Looking for some trouble tonight (yeah)
-[02:26.53]Take my hand, I'll show you the wild side
-[02:30.36]Like it's the last night of our lives (uh huh)
-[02:34.02]We'll keep dancing 'til we die
-[02:38.15]
-[02:44.35]I hear your heart beat to the beat of the drums
-[02:49.15]Oh what a shame that you came here with someone
-[02:53.68]So while you're here in my arms
-[02:56.57]Let's make the most of the night like we're gonna die young
-[02:59.76]I hear your heart beat to the beat of the drums
-[03:04.07]Oh what a shame that you came here with someone
-[03:08.66]So while you're here in my arms
-[03:11.42]Let's make the most of the night
-[03:13.81]Like we're gonna die young
-[03:17.55]We're gonna die young
-[03:21.35]We're gonna die young
-[03:26.58]Let's make the most of the night
-[03:28.56]Like we're gonna die young
-[03:29.97]
+[id: pshxveeg]
+[ti:You'll Be in My Heart]
+[ar:Niki]
+[al:Spotify Singles]
+[re:Created by Synced Lyrics Editor app at https://play.google.com/store/apps/details?id=lyriceditor.lyricsearch.embedlyrictomp3.syncedlyriceditor]
+[ve:25.1.4]
+[length:04:01.81]
+[00:00.46]Come stop the crying, it′ll be all right
+[00:05.23]Just take my hand, hold it tight
+[00:10.17]I will protect you from all around you
+[00:15.10]I will be here, don't you cry
+[00:19.95]For one so small, you seem so strong
+[00:24.90]My arms will hold you, keep you safe and warm
+[00:30.14]This bond between us can′t be broken
+[00:35.98]I will be here, don't you cry
+[00:40.70]'Cause you′ll be in my heart
+[00:45.93]Yes, you′ll be in my heart
+[00:50.92]From this day on, now and forevermore (oh)
+[01:01.27]Yes, you'll be in my heart
+[01:06.35]No matter what they say
+[01:11.66]You′ll be here in my heart always
+[01:22.22]Why can't they understand the way we feel?
+[01:27.39]They just don′t trust what they can't explain
+[01:32.28]I know we′re different, but deep inside us
+[01:37.15]We're not that different at all (we're not that different at all)
+[01:42.41]And you′ll be in my heart (oh)
+[01:47.32]Yes, you′ll be in my heart
+[01:52.48]From this day on, now and forevermore (oh)
+[02:02.66]Don't listen to them, ′cause what do they know?
+[02:07.84]We need each other to have and to hold
+[02:12.63]They'll see in time, I know
+[02:22.32]When destiny calls you, you must be strong
+[02:27.90]I may not be with you, but you got to hold on
+[02:32.92]They′ll see in time, I know
+[02:41.18]Show them together
+[02:43.35]'Cause you′ll be in my heart
+[02:48.50]Yes, you'll be in my heart
+[02:53.72]From this day on, now and forevermore (oh)
+[03:04.02]You'll be in my heart
+[03:08.99]No matter what they say
+[03:14.10]You′ll be here in my heart always
+[03:24.02]Always
+[03:28.80]Just look over your shoulder (I′ll be with you)
+[03:33.80]Just look over your shoulder (I'll be there for you always)
+[03:38.94](Always) just look over your shoulder
+[03:44.35]Just look over your shoulder
+[03:47.61]I′ll be there always
